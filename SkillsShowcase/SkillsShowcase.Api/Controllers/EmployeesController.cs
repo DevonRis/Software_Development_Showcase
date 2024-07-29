@@ -8,23 +8,23 @@ namespace SkillsShowcase.Api.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-        private readonly IEmployeesRepository employeesRepository;
+        private readonly IEmployeesRepository _employeesRepository;
 
         public EmployeesController(IEmployeesRepository employeeRepository)
         {
-            employeesRepository = employeeRepository;
+            _employeesRepository = employeeRepository;
         }
         //Gets ALL EMPLOYEES
         [HttpGet]
         public IActionResult GetAllEmployees()
         {
-            return Ok(employeesRepository.GetAllEmployees());
+            return Ok(_employeesRepository.GetAllEmployees());
         }
         //Gets all employees by ID
         [HttpGet("{id}")]
         public IActionResult GetEmployeeById(int id)
         {
-            return Ok(employeesRepository.GetEmployeeById(id));
+            return Ok(_employeesRepository.GetEmployeeById(id));
         }
         //For creating an Employee
         [HttpPost]
@@ -41,7 +41,7 @@ namespace SkillsShowcase.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var createdEmployee = employeesRepository.AddEmployee(employee);
+            var createdEmployee = _employeesRepository.AddEmployee(employee);
 
             return Created("employee", createdEmployee);
         }
@@ -60,12 +60,12 @@ namespace SkillsShowcase.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var employeeToUpdate = employeesRepository.GetEmployeeById(employee.EmployeeId);
+            var employeeToUpdate = _employeesRepository.GetEmployeeById(employee.EmployeeId);
 
             if (employeeToUpdate == null)
                 return NotFound();
 
-            employeesRepository.UpdateEmployee(employee);
+            _employeesRepository.UpdateEmployee(employee);
 
             return NoContent(); //success
         }
@@ -76,11 +76,11 @@ namespace SkillsShowcase.Api.Controllers
             if (id == 0)
                 return BadRequest();
 
-            var employeeToDelete = employeesRepository.GetEmployeeById(id);
+            var employeeToDelete = _employeesRepository.GetEmployeeById(id);
             if (employeeToDelete == null)
                 return NotFound();
 
-            employeesRepository.DeleteEmployee(id);
+            _employeesRepository.DeleteEmployee(id);
 
             return NoContent();//success
         }

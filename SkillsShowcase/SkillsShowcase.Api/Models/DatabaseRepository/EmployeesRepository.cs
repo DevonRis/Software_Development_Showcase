@@ -6,31 +6,31 @@ namespace SkillsShowcase.Api.Models.DatabaseRepository
 {
     public class EmployeesRepository : IEmployeesRepository
     {
-        private readonly AppDbContext appDbContext;
+        private readonly AppDbContext _appDbContext;
         private Random random = new Random();
 
         //Using the Application DB Contect where seed data is located
         public EmployeesRepository(AppDbContext appDbContext)
         {
-            appDbContext = appDbContext;
+            _appDbContext = appDbContext;
         }
         public IEnumerable<Employee> GetAllEmployees()
         {
-            return appDbContext.Employees;
+            return _appDbContext.Employees;
         }
         public Employee GetEmployeeById(int employeeId)
         {
-            return appDbContext.Employees.FirstOrDefault(c => c.EmployeeId == employeeId);
+            return _appDbContext.Employees.FirstOrDefault(c => c.EmployeeId == employeeId);
         }
         public Employee AddEmployee(Employee employee)
         {
-            var addedEntity = appDbContext.Employees.Add(employee);
-            appDbContext.SaveChanges();
+            var addedEntity = _appDbContext.Employees.Add(employee);
+            _appDbContext.SaveChanges();
             return addedEntity.Entity;
         }
         public Employee UpdateEmployee(Employee employee) 
         {
-            var foundEmployee = appDbContext.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            var foundEmployee = _appDbContext.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
             
             if (foundEmployee != null) 
             { 
@@ -41,18 +41,18 @@ namespace SkillsShowcase.Api.Models.DatabaseRepository
                 foundEmployee.MaritalStatus = employee.MaritalStatus;
                 foundEmployee.Gender = employee.Gender;
 
-                appDbContext.SaveChanges();
+                _appDbContext.SaveChanges();
                 return foundEmployee;
             }
             return null;
         }
         public void DeleteEmployee(int employeeId)
         {
-            var foundEmployee = appDbContext.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            var foundEmployee = _appDbContext.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
             if (foundEmployee == null) return;
 
-            appDbContext.Employees.Remove(foundEmployee);
-            appDbContext.SaveChanges();
+            _appDbContext.Employees.Remove(foundEmployee);
+            _appDbContext.SaveChanges();
         }
     }
 }

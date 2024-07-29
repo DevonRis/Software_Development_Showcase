@@ -13,7 +13,8 @@ namespace SkillsShowcase.Api.Models.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Employee>().HasData(new Employee
+            modelBuilder.Entity<Employee>().HasData(
+            new Employee
             {
                 EmployeeId = 1,
                 FirstName = "Devon",
