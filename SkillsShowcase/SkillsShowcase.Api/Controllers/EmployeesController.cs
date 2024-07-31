@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SkillsShowcase.Api.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using SkillsShowcase.Api.Models.Data;
 using SkillsShowcase.Shared.Domain.Models;
 
 namespace SkillsShowcase.Api.Controllers
@@ -8,81 +9,46 @@ namespace SkillsShowcase.Api.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-        private readonly IEmployeesRepository _employeesRepository;
+        private readonly AppDbContext _employeeDbContext;
+        public EmployeesController(AppDbContext employeeDbContext) => _employeeDbContext = employeeDbContext;
 
-        public EmployeesController(IEmployeesRepository employeeRepository)
-        {
-            _employeesRepository = employeeRepository;
-        }
-        //Gets ALL EMPLOYEES
+        //CRUD Operations: "Get" from Database
         [HttpGet]
-        public IActionResult GetAllEmployees()
+        public ActionResult<IEnumerable<Employee>> Get()
         {
-            return Ok(_employeesRepository.GetAllEmployees());
+            return _employeeDbContext.Employees;
         }
-        //Gets all employees by ID
+        //CRUD Operations: "Create/New" from Database
         [HttpGet("{id}")]
-        public IActionResult GetEmployeeById(int id)
+        public async Task<ActionResult<Employee?>> GetById(int id)
         {
-            return Ok(_employeesRepository.GetEmployeeById(id));
+            return await _employeeDbContext.Employees.Where(x => x.EmployeeId == id).SingleOrDefaultAsync();
         }
-        //For creating an Employee
         [HttpPost]
-        public IActionResult CreateEmployee([FromBody] Employee employee)
+        public async Task<ActionResult> Create(Employee employees)
         {
-            if (employee == null)
-                return BadRequest();
-
-            if (employee.FirstName == string.Empty || employee.LastName == string.Empty)
-            {
-                ModelState.AddModelError("Name/FirstName", "The name or first name shouldn't be empty");
-            }
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var createdEmployee = _employeesRepository.AddEmployee(employee);
-
-            return Created("employee", createdEmployee);
+            await _employeeDbContext.Employees.AddAsync(employees);
+            await _employeeDbContext.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetById), new { id = employees.EmployeeId }, employees);
         }
-        //Updates Employee
+        //CRUD Operations: "Update" from Database
         [HttpPut]
-        public IActionResult UpdateEmployee([FromBody] Employee employee)
+        public async Task<ActionResult> Update(Employee employees)
         {
-            if (employee == null)
-                return BadRequest();
-
-            if (employee.FirstName == string.Empty || employee.LastName == string.Empty)
-            {
-                ModelState.AddModelError("Name/FirstName", "The name or first name shouldn't be empty");
-            }
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var employeeToUpdate = _employeesRepository.GetEmployeeById(employee.EmployeeId);
-
-            if (employeeToUpdate == null)
-                return NotFound();
-
-            _employeesRepository.UpdateEmployee(employee);
-
-            return NoContent(); //success
+            _employeeDbContext.Employees.Update(employees);
+            await _employeeDbContext.SaveChangesAsync();
+            return Ok();
         }
-        //Delets an Employee
+        //CRUD Operations: "Delete" from Database
         [HttpDelete("{id}")]
-        public IActionResult DeleteEmployee(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == 0)
-                return BadRequest();
-
-            var employeeToDelete = _employeesRepository.GetEmployeeById(id);
-            if (employeeToDelete == null)
-                return NotFound();
-
-            _employeesRepository.DeleteEmployee(id);
-
-            return NoContent();//success
+            var employeeGetByIdResult = await GetById(id);
+            if (employeeGetByIdResult.Value is null)
+                return Ok();
+            _employeeDbContext.Remove(employeeGetByIdResult.Value);
+            await _employeeDbContext.SaveChangesAsync();
+            return Ok();
         }
     }
 }

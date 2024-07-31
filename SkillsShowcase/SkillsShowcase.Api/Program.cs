@@ -1,18 +1,16 @@
-using SkillsShowcase.Api.Models.Data;
-using SkillsShowcase.Api.Models.DatabaseRepository;
-using SkillsShowcase.Api.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using SkillsShowcase.Api.Models.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<AppDbContext>(options => 
+builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(
         builder.Configuration["ConnectionStrings:DefaultConnection"]);
 });
 
-builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
+//builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddCors(options =>
