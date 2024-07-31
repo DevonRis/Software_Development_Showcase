@@ -1,0 +1,50 @@
+﻿@page "/EmployeeDisplay"
+@using Microsoft.AspNetCore.Authorization
+@using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall
+
+<PageTitle>Employee Display</PageTitle>
+
+@attribute [Authorize]
+
+<h1 align="center">Employee Display Info</h1>
+
+@if (Employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    foreach (var person in Employees)
+    {
+        <div class="container">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th id="row1" scope="col">ID</th>
+                            <th id="row2" scope="col">First</th>
+                            <th id="row3" scope="col">Last</th>
+                            <th id="row4" scope="col">Email</th>
+                            <th id="row5" scope="col">PhoneNumber</th>
+                            <th id="row6" scope="col">MartialStatus</th>
+                            <th id="row7" scope="col">Gender</th>
+                            <th id="row8" scope="col">Request/EditDetails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th id="row9" scope="row">@person.EmployeeId</th>
+                            <td id="row10">@person.FirstName</td>
+                            <td id="row11">@person.LastName</td>
+                            <td id="row12">@person.Email</td>
+                            <td id="row13">@person.PhoneNumber</td>
+                            <td id="row14">@person.MaritalStatus</td>
+                            <td id="row15">@person.Gender</td>
+                            <td id="row16"><button type="button" class="btn btn-info">Info</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}
