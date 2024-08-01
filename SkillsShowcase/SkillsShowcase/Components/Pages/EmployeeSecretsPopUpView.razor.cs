@@ -10,10 +10,6 @@ namespace SkillsShowcase.Components.Pages
         public EmployeeSecretKeyForApiCall? EmployeeSecretsForView { get; set; }
         [Parameter]
         public EventCallback<EmployeeSecretKeyForApiCall> EmployeeCompanySecretKeyClicked { get; set; }
-        /*protected async override Task OnInitializedAsync() 
-        { 
-        
-        }*/
         protected override void OnParametersSet()
         {
             _getEmployeeSecretsForView = EmployeeSecretsForView;

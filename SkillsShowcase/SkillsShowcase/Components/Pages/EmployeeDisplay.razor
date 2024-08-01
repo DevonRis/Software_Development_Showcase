@@ -42,7 +42,7 @@ else
                             <td id="row14">@person.MaritalStatus</td>
                             <td id="row15">@person.Gender</td>
                             <td id="row16"><button type="button" class="btn btn-info">Info</button></td>
-                            <!--<td id="row16"><button type="button" class="btn btn-info" @onclick="@(async () => await EmployeeCompanySecretKeyClicked.InvokeAsync(EmployeeSecretsForView))">Info</button></td>-->
+                            <!--<td id="row16"><button type="button" class="btn btn-info" @onclick="@(async () => await EmployeeCompanySecretKeyClicked.InvokeAsync(_getEmployeeSecretsForView))">Info</button></td>-->
                         </tr>
                     </tbody>
                 </table>

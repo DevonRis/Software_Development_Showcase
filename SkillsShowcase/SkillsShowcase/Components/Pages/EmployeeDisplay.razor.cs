@@ -8,8 +8,7 @@ namespace SkillsShowcase.Components.Pages
     {
         [Inject]
         private GetEmployeesApiClient GetEmployeesApiClient { get; set; } = default!;
-        [Parameter]
-        public EventCallback<EmployeeSecretKeyForApiCall> EmployeeCompanySecretKeyClicked { get; set; }
+
         [Parameter]
         public List<Employee>? Employees { get; set; }
 
