@@ -24,39 +24,6 @@ namespace SkillsShowcase.Api.Models.Data
                 MaritalStatus = MaritalStatus.Married,
                 Gender = Gender.Male,
             });
-            modelBuilder.Entity<Employee>().HasData(
-            new Employee
-            {
-                EmployeeId = 2,
-                FirstName = "John",
-                LastName = "Hull",
-                Email = "Johnhull@gmail.com",
-                PhoneNumber = "8322156676",
-                MaritalStatus = MaritalStatus.Married,
-                Gender = Gender.Male,
-            });
-            modelBuilder.Entity<Employee>().HasData(
-            new Employee
-            {
-                EmployeeId = 3,
-                FirstName = "Robert",
-                LastName = "Pyron",
-                Email = "RobertPyron@gmail.com",
-                PhoneNumber = "8322156675",
-                MaritalStatus = MaritalStatus.Single,
-                Gender = Gender.Male,
-            });
-            modelBuilder.Entity<Employee>().HasData(
-            new Employee
-            {
-                EmployeeId = 4,
-                FirstName = "Walter",
-                LastName = "Bryant",
-                Email = "WalterBryant@gmail.com",
-                PhoneNumber = "8322156674",
-                MaritalStatus = MaritalStatus.Single,
-                Gender = Gender.Male,
-            });
         }
     }
 }
