@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace SkillsShowcase.Shared.Domain.Clients
 {
-    public class GetEmployeesApiClient
+    public class GetApiClient
     {
         private readonly HttpClient _httpClient;
 
-        public GetEmployeesApiClient(ApiClientOptions apiClientOptions) 
+        public GetApiClient(ApiClientOptions apiClientOptions) 
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new System.Uri(apiClientOptions.ApiBaseAddress);
@@ -36,6 +36,11 @@ namespace SkillsShowcase.Shared.Domain.Clients
         public async Task DeleteApiEmployeesTableById(int id)
         {
             await _httpClient.DeleteAsync($"/api/Employees/{id}");
+        }
+        //EmployeeSecrets Table
+        public async Task<List<EmployeeSecretKeyForApiCall>?> GetApiEmployeeSecretKeys()
+        {
+            return await _httpClient.GetFromJsonAsync<List<EmployeeSecretKeyForApiCall>?>("/api/EmployeeSecretKey");
         }
     }
 }

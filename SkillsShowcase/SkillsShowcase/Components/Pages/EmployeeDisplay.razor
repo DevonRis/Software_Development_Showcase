@@ -41,12 +41,12 @@ else
                             <td id="row13">@person.PhoneNumber</td>
                             <td id="row14">@person.MaritalStatus</td>
                             <td id="row15">@person.Gender</td>
-                            <td id="row16"><button type="button" class="btn btn-info">Info</button></td>
-                            <!--<td id="row16"><button type="button" class="btn btn-info" @onclick="@(async () => await EmployeeCompanySecretKeyClicked.InvokeAsync(_getEmployeeSecretsForView))">Info</button></td>-->
+                            <td id="row16"><button type="button" class="btn btn-info" @onclick="() => ShowEmployeeSecretsModal()">Show Employee SecretKeys</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <EmployeeSecretsModal @ref="employeeSecretsModal" />
     }
 }
