@@ -14,7 +14,7 @@ namespace SkillsShowcase.Shared.Domain.IoC
             services.AddSingleton(provider =>
             {
                 var options = provider.GetRequiredService<IOptions<ApiClientOptions>>().Value;
-                return new GetEmployeesApiClient(options);
+                return new GetApiClient(options);
             });
         }
     }
