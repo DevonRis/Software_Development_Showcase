@@ -1,5 +1,6 @@
 ﻿@page "/EmployeeDisplay"
 @using Microsoft.AspNetCore.Authorization
+@using SkillsShowcase.Components.Pages.LayeredPages
 @using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall
 @rendermode InteractiveServer
 
@@ -41,12 +42,12 @@ else
                             <td id="row13">@person.PhoneNumber</td>
                             <td id="row14">@person.MaritalStatus</td>
                             <td id="row15">@person.Gender</td>
-                            <td id="row16"><button type="button" class="btn btn-info" @onclick="() => ShowEmployeeSecretsModal()">Show Employee SecretKeys</button></td>
+                            <td id="row16"><button type="button" class="btn btn-info" @onclick="() => ShowEmployeeSecretsModal(person.EmployeeId)">Show Employee SecretKeys</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <EmployeeSecretsModal @ref="employeeSecretsModal" />
+        <EmployeeSecretsPopUpModal @ref="employeeSecretsModal" />
     }
 }
