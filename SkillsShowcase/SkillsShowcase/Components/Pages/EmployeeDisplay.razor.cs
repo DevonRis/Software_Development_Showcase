@@ -18,9 +18,6 @@ namespace SkillsShowcase.Components.Pages
         public List<Employee>? Employees { get; set; }
         [Parameter]
         public List<EmployeeSecretKeyForApiCall>? EmployeeSecrets { get; set; }
-        [Parameter]
-        public List<int>? EmployeeIDs { get; set; }
-
         protected async override Task OnInitializedAsync() 
         {
             await GetApiEmployeesForView();
