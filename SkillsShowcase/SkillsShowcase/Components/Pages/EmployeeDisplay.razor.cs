@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using SkillsShowcase.Components.Pages.LayeredPages;
 using SkillsShowcase.Shared.Domain.Clients;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 
@@ -11,12 +12,14 @@ namespace SkillsShowcase.Components.Pages
         [Inject]
         private GetApiClient GetEmployeesAPIs { get; set; } = default!;
 
-        private EmployeeSecretsModal? employeeSecretsModal;
+        private EmployeeSecretsPopUpModal? employeeSecretsModal;
 
         [Parameter]
         public List<Employee>? Employees { get; set; }
         [Parameter]
         public List<EmployeeSecretKeyForApiCall>? EmployeeSecrets { get; set; }
+        [Parameter]
+        public List<int>? EmployeeIDs { get; set; }
 
         protected async override Task OnInitializedAsync() 
         {
@@ -26,10 +29,15 @@ namespace SkillsShowcase.Components.Pages
         {
             Employees = await GetEmployeesAPIs.GetApiEmployeesTable();
         }
-        private async Task ShowEmployeeSecretsModal()
+        private async Task ShowEmployeeSecretsModal(int employeeId)//     Must Pass in from whats clicked in the UI
         {
             EmployeeSecrets = await GetSecretsAPIs.GetApiEmployeeSecretKeys();
-            employeeSecretsModal.Show(EmployeeSecrets);
+            
+            var employeeSecrets = EmployeeSecrets?
+                .Where(secrets => secrets.Id == employeeId)
+                .ToList();
+
+            employeeSecretsModal?.Show(employeeSecrets);
         }
     }
 }

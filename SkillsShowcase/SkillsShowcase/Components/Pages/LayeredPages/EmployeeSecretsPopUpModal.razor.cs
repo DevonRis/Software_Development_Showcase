@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 
-namespace SkillsShowcase.Components.Pages
+namespace SkillsShowcase.Components.Pages.LayeredPages
 {
-    public partial class EmployeeSecretsModal : ComponentBase
+    public partial class EmployeeSecretsPopUpModal : ComponentBase
     {
         [Parameter]
         public List<EmployeeSecretKeyForApiCall>? EmployeeSecrets { get; set; }
