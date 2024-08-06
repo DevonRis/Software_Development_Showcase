@@ -1,0 +1,47 @@
+﻿@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class ="scene scene--card">
+            <div @ref=DcVillain_Card class="card" style="width: 18rem;">
+                <div class="card__face card__face--front">
+                    <div class="cardFrontInner">
+                        <h5></h5>
+                        <hr />
+                        <div class="cardTextFront">
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card__face card__face--back">
+                    <img />
+                    <div id="cardBackInner">
+                        <div class="cardFrontInner">
+                            <h5>
+                                <hr />
+                                <p></p>
+                                <p></p>
+  
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.flipCard = async (cardDiv) => {
+        cardDiv.classList.toggle('is-flipped');
+    }
+</script>

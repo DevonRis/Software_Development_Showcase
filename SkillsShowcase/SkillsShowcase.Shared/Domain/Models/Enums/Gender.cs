@@ -1,4 +1,4 @@
-﻿namespace SkillsShowcase.Shared.Domain.Models
+﻿namespace SkillsShowcase.Shared.Domain.Models.Enums
 {
     public enum Gender
     {

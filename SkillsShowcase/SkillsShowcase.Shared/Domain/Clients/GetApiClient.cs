@@ -17,19 +17,19 @@ namespace SkillsShowcase.Shared.Domain.Clients
             _httpClient.BaseAddress = new System.Uri(apiClientOptions.ApiBaseAddress);
         }
         //EVERYTHING WITH EMPLOYEE TABLE
-        public async Task<List<Employee>?> GetApiEmployeesTable()
+        public async Task<List<EmployeeForApiCall>?> GetApiEmployeesTable()
         {
-            return await _httpClient.GetFromJsonAsync<List<Employee>?>("/api/Employees");
+            return await _httpClient.GetFromJsonAsync<List<EmployeeForApiCall>?>("/api/Employees");
         }
-        public async Task<Employee?> GetApiEmployeesTableById(int id)
+        public async Task<EmployeeForApiCall?> GetApiEmployeesTableById(int id)
         {
-            return await _httpClient.GetFromJsonAsync<Employee?>($"/api/Employees/{id}");
+            return await _httpClient.GetFromJsonAsync<EmployeeForApiCall?>($"/api/Employees/{id}");
         }
-        public async Task SaveApiEmployeesTable(Employee employees)
+        public async Task SaveApiEmployeesTable(EmployeeForApiCall employees)
         {
             await _httpClient.PostAsJsonAsync("/api/Employees", employees);
         }
-        public async Task UpdateApiEmployeesTable(Employee employees)
+        public async Task UpdateApiEmployeesTable(EmployeeForApiCall employees)
         {
             await _httpClient.PutAsJsonAsync("/api/Employees", employees);
         }
@@ -41,6 +41,15 @@ namespace SkillsShowcase.Shared.Domain.Clients
         public async Task<List<EmployeeSecretKeyForApiCall>?> GetApiEmployeeSecretKeys()
         {
             return await _httpClient.GetFromJsonAsync<List<EmployeeSecretKeyForApiCall>?>("/api/EmployeeSecretKey");
+        }
+        //Everything for DcVillains Table
+        public async Task<List<DcVillainsForApiCall>?> GetApiDcVillainsTable()
+        {
+            return await _httpClient.GetFromJsonAsync<List<DcVillainsForApiCall>?>("/api/DcVillains");
+        }
+        public async Task UpdateDcVillainsTable(DcVillainsForApiCall dcVillains)
+        {
+            await _httpClient.PutAsJsonAsync("/api/DcVillains", dcVillains);
         }
     }
 }
