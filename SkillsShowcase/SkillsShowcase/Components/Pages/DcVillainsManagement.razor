@@ -1,5 +1,18 @@
 ﻿@page "/DcVillainsManagement"
 @using Microsoft.AspNetCore.Authorization
+@using SkillsShowcase.Components.Pages.LayeredPages.DcVillainsLayeredComponents
 @rendermode InteractiveServer
 
 @attribute [Authorize]
+
+@if (DcVillainsForMainPage == null)
+{
+    <p><em>Loading...</em></p>
+} 
+else
+{
+    foreach (var villains in DcVillainsForMainPage)
+    {
+        <DcVillainsCardCarousel DcVillainsCarousel="villains"></DcVillainsCardCarousel>
+    }
+}

@@ -8,8 +8,11 @@ namespace SkillsShowcase.Components.Pages.LayeredPages.DcVillainsLayeredComponen
     {
         [Inject]
         private GetApiClient GetDcVillainsAPIs { get; set; } = default!;
+
         [Parameter]
         public List<DcVillainsForApiCall>? DcVillainsForCarousel { get; set; }
+        [Parameter]
+        public DcVillainsForApiCall? DcVillainsCarousel { get; set; }
         protected async override Task OnInitializedAsync()
         {
             await GetApiDcVillainsForView();
@@ -17,6 +20,10 @@ namespace SkillsShowcase.Components.Pages.LayeredPages.DcVillainsLayeredComponen
         private async Task GetApiDcVillainsForView()
         {
             DcVillainsForCarousel = await GetDcVillainsAPIs.GetApiDcVillainsTable();
+            foreach (var dcVillainProperty in DcVillainsForCarousel)
+            {
+                DcVillainsCarousel = dcVillainProperty;
+            }
         }
     }
 }
