@@ -20,11 +20,6 @@
     height: 100%;
 }
 
-.card__face--back {
-    transform: rotateY(180deg);
-    width: 100%;
-}
-
 #transparent.image {
     opacity: .7;
     position: absolute;
@@ -62,12 +57,4 @@ div.hr {
 
 .cardTextFront {
     justify-content: center;
-}
-
-#cardBackInner {
-    position: absolute;
-    width: 100%;
-    font-weight: 1000;
-    top: 0px;
-    left: 0px;
 }

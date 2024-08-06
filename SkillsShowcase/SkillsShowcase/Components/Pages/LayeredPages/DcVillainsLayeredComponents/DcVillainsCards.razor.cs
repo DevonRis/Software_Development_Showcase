@@ -13,29 +13,18 @@ namespace SkillsShowcase.Components.Pages.LayeredPages.DcVillainsLayeredComponen
         public List<DcVillainsForApiCall>? DcVillainsForCards { get; set; }
         [Parameter]
         public DcVillainsForApiCall? DcVillainsCard { get; set; }
-        [Parameter]
-        public ElementReference DcVillain_Card { get; set; }
-        [Parameter]
-        public bool StartFlipped { get; set; }
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+
+        protected async override Task OnInitializedAsync()
         {
-            if (StartFlipped && firstRender)
-            {
-                await FlipCard();
-            }
+            await DcVillainsForCard();
         }
-        private async Task DcVillainsFor()
+        private async Task DcVillainsForCard()
         {
             DcVillainsForCards = await GetDcVillainsAPIs.GetApiDcVillainsTable();
             foreach (var dcVillainProperty in DcVillainsForCards) 
             {
                 DcVillainsCard = dcVillainProperty;
             }
-            await FlipCard();
-        }
-        public async Task FlipCard()
-        {
-            await JSRuntime.InvokeVoidAsync("flipCard", DcVillain_Card);
         }
     }
 }

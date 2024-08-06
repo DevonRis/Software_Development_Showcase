@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-6">
         <div class ="scene scene--card">
-            <div @ref=DcVillain_Card class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;">
                 <div class="card__face card__face--front">
                     <div class="cardFrontInner">
                         <h5 class="card-title" align="center">Villains In The DcVerse.</h5>
@@ -22,31 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card__face card__face--back">
-                    <img src="/images/Superman.png" id="supermanPicture" />
-                    <div id="cardBackInner">
-                        <div class="cardFrontInner">
-                            <h5 class="card-title"></h5>
-                            <hr />
-                            <p class="card-text">@DcVillainsCard?.DcVillanId</p>
-                            <p class="card-text">@DcVillainsCard?.VillanName</p>
-                            <p class="card-text">@DcVillainsCard?.VillanPower</p>
-                            <p class="card-text">@DcVillainsCard?.VillanAge</p>
-                            <p class="card-text">@DcVillainsCard?.Weaknesses</p>
-                            <p class="card-text">@DcVillainsCard?.CityLocation</p>
-                            <p class="card-text">@DcVillainsCard?.ThreatLevel</p>
-                            <p class="card-text">@DcVillainsCard?.PlacedInArkham</p>
-                            <p class="card-text">@DcVillainsCard?.SupermanLevelVillan</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    window.flipCard = async (cardDiv) => {
-        cardDiv.classList.toggle('is-flipped');
-    }
-</script>
