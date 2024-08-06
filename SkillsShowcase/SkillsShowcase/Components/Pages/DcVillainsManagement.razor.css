@@ -1,0 +1,12 @@
+﻿.slider-container {
+    display: flex;
+}
+
+.card {
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: scale(1.01);
+    }

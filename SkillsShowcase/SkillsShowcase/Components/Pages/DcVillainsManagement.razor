@@ -1,0 +1,47 @@
+﻿@page "/DcVillainsManagement"
+@using Microsoft.AspNetCore.Authorization
+@using SkillsShowcase.Components.Pages.LayeredPages
+@rendermode InteractiveServer
+
+@attribute [Authorize]
+
+@if (DcVillainsForMainPage == null)
+{
+    <p><em>Loading...</em></p>
+} 
+else
+{
+    <div class="container">
+        <div class="text-md-center">
+            <input type="text"
+                   @bind-value="SearchText"
+                   @bind-value:event="oninput"
+                   placeholder="Search plans you'd like embargoed..."
+                   class="form-control" />
+        </div>
+        @if (HasMatchingVillains)
+        {
+            <HorizontalSlider>
+                <div class="slider-container">
+                    @foreach (var villain in DcVillainsForMainPage.Where(villain => villain.VillanName.Equals(SearchText, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title" align="center">Villains In The DcVerse.</h5>
+                                <hr />
+                                <p class="card-text">@villain.DcVillanId</p>
+                                <p class="card-text">@villain.VillanName</p>
+                                <p class="card-text">@villain.VillanPower</p>
+                                <p class="card-text">@villain.VillanAge</p>
+                                <p class="card-text">@villain.Weaknesses</p>
+                                <p class="card-text">@villain.CityLocation</p>
+                                <p class="card-text">@villain.ThreatLevel</p>
+                                <p class="card-text">@villain.PlacedInArkham</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </HorizontalSlider>
+        }
+    </div>
+}

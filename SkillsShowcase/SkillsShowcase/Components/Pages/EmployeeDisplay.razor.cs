@@ -15,7 +15,7 @@ namespace SkillsShowcase.Components.Pages
         private EmployeeSecretsPopUpModal? employeeSecretsModal;
 
         [Parameter]
-        public List<Employee>? Employees { get; set; }
+        public List<EmployeeForApiCall>? Employees { get; set; }
         [Parameter]
         public List<EmployeeSecretKeyForApiCall>? EmployeeSecrets { get; set; }
         protected async override Task OnInitializedAsync() 

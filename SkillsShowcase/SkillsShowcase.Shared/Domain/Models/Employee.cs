@@ -1,4 +1,6 @@
-﻿namespace SkillsShowcase.Shared.Domain.Models
+﻿using SkillsShowcase.Shared.Domain.Models.Enums;
+
+namespace SkillsShowcase.Shared.Domain.Models
 {
     public class Employee
     {

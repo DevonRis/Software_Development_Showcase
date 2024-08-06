@@ -1,6 +1,8 @@
-﻿namespace SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall
+﻿using SkillsShowcase.Shared.Domain.Models.Enums;
+
+namespace SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall
 {
-    public class Employee
+    public class EmployeeForApiCall
     {
         public int EmployeeId { get; set; }
         public string? FirstName { get; set; }
