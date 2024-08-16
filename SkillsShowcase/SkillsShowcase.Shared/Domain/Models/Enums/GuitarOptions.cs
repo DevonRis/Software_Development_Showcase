@@ -5,7 +5,7 @@ namespace SkillsShowcase.Shared.Domain.Models.Enums
     public enum GuitarOptions
     {
         [Description("")]
-        NotServed = 0,
+        NoModel = 0,
         [Description("Fender")]
         Fender = 1,
         [Description("Gibson")]
