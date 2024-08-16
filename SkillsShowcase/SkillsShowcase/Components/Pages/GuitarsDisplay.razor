@@ -1,0 +1,40 @@
+﻿@page "/GuitarsDisplay"
+@using Microsoft.AspNetCore.Authorization
+@using SkillsShowcase.Components.Pages.LayeredPages
+@rendermode InteractiveServer
+
+@attribute [Authorize]
+
+<h1 align="center">Guitars Display</h1>
+
+@if (GuitarsForGuitarDisplayPage == null)
+{
+    <p><em>Loading...</em></p>
+} 
+else
+{
+    <div class="container">
+        <DropdownMenuForGuitars 
+            GuitarsForDropdown="@GuitarsForGuitarDisplayPage" 
+            SelectedGuitar="HandleIncomingGuitarOptionValue" />
+        <HorizontalSlider>
+            <div class="slider-container">
+                @foreach (var guitarData in GetFilteredGuitars())
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="/images/@((guitarData.GuitarModel + ".png"))">
+                        <div class="card-body">
+                            <h5 class="card-title">Guitar Info</h5>
+                            <hr />
+                            <p class="card-text">@guitarData.GuitarId</p>
+                            <p class="card-text">@guitarData.GuitarManufacturer</p>
+                            <p class="card-text">@guitarData.GuitarModel</p>
+                            <p class="card-text">@guitarData.GuitarPrice</p>
+                            <p class="card-text">@guitarData.BuildYear</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </HorizontalSlider>
+    </div>
+}

@@ -51,5 +51,10 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             await _httpClient.PutAsJsonAsync("/api/DcVillains", dcVillains);
         }
+        //Everything with Guitars Table
+        public async Task<List<GuitarsForApiCall>?> GetApiGuitars() 
+        {
+            return await _httpClient.GetFromJsonAsync<List<GuitarsForApiCall>?>("/api/Guitar");
+        }
     }
 }
