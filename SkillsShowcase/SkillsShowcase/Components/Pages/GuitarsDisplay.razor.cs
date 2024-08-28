@@ -28,7 +28,14 @@ namespace SkillsShowcase.Components.Pages
         {
             if (SelectedGuitarOptionInCard.HasValue) 
             {
-                return GuitarsForGuitarDisplayPage?.Where(option => option.GuitarManufacturer == SelectedGuitarOptionInCard);
+                if (SelectedGuitarOptionInCard == GuitarOptions.NoModel) 
+                {
+                    return GuitarsForGuitarDisplayPage;
+                }
+                else 
+                {
+                    return GuitarsForGuitarDisplayPage?.Where(option => option.GuitarManufacturer == SelectedGuitarOptionInCard);
+                }
             }
             return GuitarsForGuitarDisplayPage;
         }

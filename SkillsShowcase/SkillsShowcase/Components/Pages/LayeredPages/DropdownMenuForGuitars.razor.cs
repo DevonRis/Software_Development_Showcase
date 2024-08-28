@@ -36,6 +36,7 @@ namespace SkillsShowcase.Components.Pages.LayeredPages
         protected async override Task OnInitializedAsync()
         {
             await GetGuitarsForGuitarsDisplayView();
+            SelectedGuitarOption = GuitarOptions.NoModel;
         }
         private async Task GetGuitarsForGuitarsDisplayView()
         {
