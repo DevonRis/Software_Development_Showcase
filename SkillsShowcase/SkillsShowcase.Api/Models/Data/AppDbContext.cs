@@ -13,7 +13,8 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<EmployeeSecretKey> EmployeeSecretKeys { get; set; }
         public DbSet<DcVillains> DcVillains { get; set; }
         public DbSet<Guitars> Guitars { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        public DbSet<SessionLogs> SessionLogs { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -28,8 +29,8 @@ namespace SkillsShowcase.Api.Models.Data
                 MaritalStatus = MaritalStatus.Married,
                 Gender = Gender.Male,
             });
-            modelBuilder.Entity<EmployeeSecretKey>().HasData(new EmployeeSecretKey 
-            { 
+            modelBuilder.Entity<EmployeeSecretKey>().HasData(new EmployeeSecretKey
+            {
                 Id = 1,
                 EmployeeName = "Devon Rismay",
                 SecretKey = "Auth-234252-rgsdfg4553-234dsdf-5555",
@@ -172,8 +173,8 @@ namespace SkillsShowcase.Api.Models.Data
                 PlacedInArkham = ArkhamAsylum.NotStationed,
                 SupermanLevelVillan = null,
             });
-            modelBuilder.Entity<Guitars>().HasData(new Guitars 
-            { 
+            modelBuilder.Entity<Guitars>().HasData(new Guitars
+            {
                 GuitarId = 1,
                 GuitarManufacturer = GuitarOptions.Fender,
                 GuitarModel = "Custom Shop American Stratocaster",
@@ -235,6 +236,102 @@ namespace SkillsShowcase.Api.Models.Data
                 GuitarModel = "Artstar AS2000",
                 GuitarPrice = 2600.23,
                 BuildYear = new DateTime(2000, 10, 15)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs 
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "01.6.0.20",
+                UserAgent = "Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 1,
+                CreatedTime = new DateTime(2024, 1, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "02.6.0.20",
+                UserAgent = "Safari\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 15,
+                CreatedTime = new DateTime(2024, 2, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "03.6.0.20",
+                UserAgent = "FireFox\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 30,
+                CreatedTime = new DateTime(2024, 3, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "04.6.0.20",
+                UserAgent = "EnterExplorer\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 23,
+                CreatedTime = new DateTime(2024, 4, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "05.6.0.20",
+                UserAgent = "Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 43,
+                CreatedTime = new DateTime(2024, 5, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "06.6.0.20",
+                UserAgent = "Windows\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 2,
+                CreatedTime = new DateTime(2024, 6, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "07.6.0.20",
+                UserAgent = "Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 6,
+                CreatedTime = new DateTime(2024, 7, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "08.6.0.20",
+                UserAgent = "TechJuice\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 33,
+                CreatedTime = new DateTime(2024, 8, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "09.6.0.20",
+                UserAgent = "TechJuice\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 20,
+                CreatedTime = new DateTime(2024, 9, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "10.6.0.20",
+                UserAgent = "TechJuice\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 52,
+                CreatedTime = new DateTime(2024, 10, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "11.6.0.20",
+                UserAgent = "Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 10,
+                CreatedTime = new DateTime(2024, 11, 10)
+            });
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
+            {
+                SessionId = Guid.NewGuid(),
+                IpAddress = "12.6.0.20",
+                UserAgent = "Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36",
+                SessionCountsPerDate = 49,
+                CreatedTime = new DateTime(2024, 12, 10)
             });
         }
     }

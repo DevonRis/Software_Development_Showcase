@@ -11,7 +11,7 @@ namespace SkillsShowcase.Shared.Domain.Clients
     {
         private readonly HttpClient _httpClient;
 
-        public GetApiClient(ApiClientOptions apiClientOptions) 
+        public GetApiClient(ApiClientOptions apiClientOptions)
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new System.Uri(apiClientOptions.ApiBaseAddress);
@@ -52,9 +52,14 @@ namespace SkillsShowcase.Shared.Domain.Clients
             await _httpClient.PutAsJsonAsync("/api/DcVillains", dcVillains);
         }
         //Everything with Guitars Table
-        public async Task<List<GuitarsForApiCall>?> GetApiGuitars() 
+        public async Task<List<GuitarsForApiCall>?> GetApiGuitars()
         {
             return await _httpClient.GetFromJsonAsync<List<GuitarsForApiCall>?>("/api/Guitar");
+        }
+        // Everything with SessionLogs Table
+        public async Task<List<SessionLogsForApiCall>?> GetApiSessionLogs()
+        {
+            return await _httpClient.GetFromJsonAsync<List<SessionLogsForApiCall>?>("/api/SessionLogs");
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿[
+  {
+    "SessionId": "952608cb-1759-45fe-a3e4-34cb8d6bcefa",
+    "IpAddress": "01.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-07-30T15:40:12.7296466"
+  },
+  {
+    "SessionId": "5cd27c67-32d5-4fd5-95c2-48664953eaf6",
+    "IpAddress": "02.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-07-24T22:03:29.2194336"
+  },
+  {
+    "SessionId": "5d038a1d-42af-47c6-af10-52253c2e755e",
+    "IpAddress": "03.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-08-19T21:42:57.7862825"
+  },
+  {
+    "SessionId": "656eadca-8bfb-4f45-bc5b-614973743268",
+    "IpAddress": "04.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-08-01T18:44:58.8456469"
+  },
+  {
+    "SessionId": "56d3ef3c-8229-46b1-880c-b0a087df8b53",
+    "IpAddress": "05.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-08-14T13:15:20.9516283"
+  },
+  {
+    "SessionId": "9c870919-b283-4faf-862e-bd82ed5bbd3a",
+    "IpAddress": "06.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-07-30T14:27:04.5668896"
+  },
+  {
+    "SessionId": "4fed01cf-540f-4880-9be3-d419fe2281b3",
+    "IpAddress": "07.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-08-12T16:57:25.9616811"
+  },
+  {
+    "SessionId": "f06f82e6-fe23-4277-a691-d89f39892d9a",
+    "IpAddress": "08.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-08-01T14:11:29.2224411"
+  },
+  {
+    "SessionId": "84d18f29-3b49-4f70-b55e-dcb72b2adc80",
+    "IpAddress": "09.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-08-01T16:06:43.9261899"
+  },
+  {
+    "SessionId": "8b64d713-8dcf-4f80-8da5-f7b1ab697066",
+    "IpAddress": "10.7.1.50",
+    "UserAgent": "Google\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\/537.36 (EHTML, like Gecko) Chrome\/127.0.0.0 explorer\/537.36",
+    "CreatedTime": "2024-07-18T18:01:40.3160678"
+  }
+]
