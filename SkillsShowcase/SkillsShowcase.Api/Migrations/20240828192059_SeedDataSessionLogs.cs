@@ -13,12 +13,6 @@ namespace SkillsShowcase.Api.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "InfoGraphData");
-
-            migrationBuilder.DropTable(
-                name: "TestSessionLogs");
-
             migrationBuilder.CreateTable(
                 name: "SessionLogs",
                 columns: table => new
@@ -59,89 +53,6 @@ namespace SkillsShowcase.Api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "SessionLogs");
-
-            migrationBuilder.CreateTable(
-                name: "InfoGraphData",
-                columns: table => new
-                {
-                    GraphDataId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AfricanAmerican_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AfricanAmericans_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AfricanAmericans_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    AfricanAmericans_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    African_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Asian_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Asians_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Asians_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    Asians_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    Asians_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Caucasian_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Caucasians_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Caucasians_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    Caucasians_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    Caucasians_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Indian_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Indians_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Indians_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    Indians_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    Indians_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Latino_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Latinos_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Latinos_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    Latinos_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    Latinos_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NativeAmericans_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NativeAmericans_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    NativeAmericans_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    NativeAmericans_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Native_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Nigerian_Americans_AverageIncome = table.Column<int>(type: "int", nullable: false),
-                    Nigerians_AverageEducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nigerians_BusinessStart = table.Column<double>(type: "float", nullable: false),
-                    Nigerians_BusinessSuccessRate = table.Column<double>(type: "float", nullable: false),
-                    Nigerians_DegreePaths = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InfoGraphData", x => x.GraphDataId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TestSessionLogs",
-                columns: table => new
-                {
-                    SessionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IpAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserAgent = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TestSessionLogs", x => x.SessionId);
-                });
-
-            migrationBuilder.InsertData(
-                table: "InfoGraphData",
-                columns: new[] { "GraphDataId", "AfricanAmerican_DegreePaths", "AfricanAmericans_AverageEducationLevel", "AfricanAmericans_BusinessStart", "AfricanAmericans_BusinessSuccessRate", "African_Americans_AverageIncome", "Asian_Americans_AverageIncome", "Asians_AverageEducationLevel", "Asians_BusinessStart", "Asians_BusinessSuccessRate", "Asians_DegreePaths", "Caucasian_Americans_AverageIncome", "Caucasians_AverageEducationLevel", "Caucasians_BusinessStart", "Caucasians_BusinessSuccessRate", "Caucasians_DegreePaths", "Indian_Americans_AverageIncome", "Indians_AverageEducationLevel", "Indians_BusinessStart", "Indians_BusinessSuccessRate", "Indians_DegreePaths", "Latino_Americans_AverageIncome", "Latinos_AverageEducationLevel", "Latinos_BusinessStart", "Latinos_BusinessSuccessRate", "Latinos_DegreePaths", "NativeAmericans_AverageEducationLevel", "NativeAmericans_BusinessStart", "NativeAmericans_BusinessSuccessRate", "NativeAmericans_DegreePaths", "Native_Americans_AverageIncome", "Nigerian_Americans_AverageIncome", "Nigerians_AverageEducationLevel", "Nigerians_BusinessStart", "Nigerians_BusinessSuccessRate", "Nigerians_DegreePaths" },
-                values: new object[] { 1, "Business Administration, Nursing and Health, Criminal Justice and Law Enforcement, Social Work, Education", "High School, Associate Degrees", 0.070000000000000007, 0.41999999999999998, 52860, 106954, "Associate Degrees, Bachelor Degrees, Master Degrees", 0.12, 0.29999999999999999, "Medicine, Engineering, Computer Science and IT, Business Administration, Law", 81000, "Associate Degrees, Bachelor Degrees", 0.69999999999999996, 0.5, "Business Administration, Computer Science, Nursing and Health, Engineering, Psychology", 152141, "Associate Degrees, Bachelor Degrees, Master Degrees, Doctorate Degrees", 0.14000000000000001, 0.45000000000000001, "Medicine, Engineering, Computer Science and IT, Business Administration, Pharmacy", 62800, "High School, Associate Degrees", 0.35999999999999999, 0.47999999999999998, "Business Administration, Health Sciences and Nursing, Computer Science and IT, Engineering, Education", "High School, Associate Degrees", 0.29999999999999999, 0.40000000000000002, "Business, Healthcare, Education, Environmental Science, Social Work", 58082, 70000, "Associate Degrees, Bachelor Degrees, Master Degrees", 0.070000000000000007, 0.5, "Medicine, Engineering, Computer Science and IT, Business Administration, Law" });
-
-            migrationBuilder.InsertData(
-                table: "TestSessionLogs",
-                columns: new[] { "SessionId", "CreatedTime", "IpAddress", "UserAgent" },
-                values: new object[,]
-                {
-                    { new Guid("4fed01cf-540f-4880-9be3-d419fe2281b3"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4258), "08.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("56d3ef3c-8229-46b1-880c-b0a087df8b53"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4147), "04.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("5cd27c67-32d5-4fd5-95c2-48664953eaf6"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4120), "02.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("5d038a1d-42af-47c6-af10-52253c2e755e"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4171), "05.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("656eadca-8bfb-4f45-bc5b-614973743268"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4055), "01.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("84d18f29-3b49-4f70-b55e-dcb72b2adc80"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4287), "10.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("8b64d713-8dcf-4f80-8da5-f7b1ab697066"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4230), "06.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("952608cb-1759-45fe-a3e4-34cb8d6bcefa"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4245), "07.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("9c870919-b283-4faf-862e-bd82ed5bbd3a"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4134), "03.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" },
-                    { new Guid("f06f82e6-fe23-4277-a691-d89f39892d9a"), new DateTime(2024, 8, 26, 22, 43, 54, 569, DateTimeKind.Local).AddTicks(4272), "09.7.1.50", "Google\\/5.0 (Windows ZT 11.2; Win64; x64) AppleWebKit\\/537.36 (EHTML, like Gecko) Chrome\\/127.0.0.0 explorer\\/537.36" }
-                });
         }
     }
 }
