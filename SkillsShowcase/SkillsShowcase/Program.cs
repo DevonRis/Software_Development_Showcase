@@ -15,6 +15,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.ApiClientServiceExtenstion(x => x.ApiBaseAddress = builder.Configuration.GetValue<string>("ApiBaseAddress"));
 
+
+
 builder.Services.AddAuthentication("SkillsShowcaseUser")
     .AddCookie("SkillsShowcaseUser")
     .AddGoogle(googleOptions =>

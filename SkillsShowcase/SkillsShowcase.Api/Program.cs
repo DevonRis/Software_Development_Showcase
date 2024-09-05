@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SkillsShowcase.Api.Models.Data;
+using SkillsShowcase.Shared.Domain.Repositories;
+using SkillsShowcase.Shared.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// === How To Register Services
+builder.Services.AddScoped<GuitarService>();
+builder.Services.AddScoped<GuitarRepository>();
+// ===
 
 var app = builder.Build();
 
