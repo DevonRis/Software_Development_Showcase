@@ -1,20 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain\IoC\Repositories\**" />
+    <Compile Remove="Domain\IoC\Services\**" />
+    <Compile Remove="Domain\OtherServices\**" />
+    <EmbeddedResource Remove="Domain\IoC\Repositories\**" />
+    <EmbeddedResource Remove="Domain\IoC\Services\**" />
+    <EmbeddedResource Remove="Domain\OtherServices\**" />
+    <None Remove="Domain\IoC\Repositories\**" />
+    <None Remove="Domain\IoC\Services\**" />
+    <None Remove="Domain\OtherServices\**" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Domain\IoC\Repositories\" />
-	  <Folder Include="Domain\IoC\Services\" />
-	  <Folder Include="Domain\OtherServices\" />
 	</ItemGroup>
 </Project>

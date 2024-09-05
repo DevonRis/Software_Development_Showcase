@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SkillsShowcase.Api.Models.Data;
+using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
+using SkillsShowcase.Api.Models.Data.Services;
 using SkillsShowcase.Shared.Domain.Models;
 
 namespace SkillsShowcase.Api.Controllers
@@ -8,16 +9,17 @@ namespace SkillsShowcase.Api.Controllers
     [ApiController]
     public class GuitarController : ControllerBase
     {
-        private readonly AppDbContext _guitarsDbContext;
+        private readonly GuitarService _guitarService;
 
-        public GuitarController(AppDbContext guitarsDbContext) 
-        { 
-            _guitarsDbContext = guitarsDbContext;
+        public GuitarController(GuitarService guitarService)
+        {
+            _guitarService = guitarService;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Guitars>> Get() 
+        public ActionResult<IEnumerable<Guitars>> Get()
         {
-            return _guitarsDbContext.Guitars;
+            GetGuitarsResponse response = _guitarService.GetGuitars();
+            return Ok(response.Guitars);
         }
     }
 }
