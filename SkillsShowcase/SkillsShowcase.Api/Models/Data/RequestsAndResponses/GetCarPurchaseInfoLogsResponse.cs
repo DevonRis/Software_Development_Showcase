@@ -1,9 +1,9 @@
-﻿using SkillsShowcase.Shared.Domain.Models;
+﻿using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 
 namespace SkillsShowcase.Api.Models.Data.RequestsAndResponses
 {
     public class GetCarPurchaseInfoLogsResponse
     {
-        public SoldVsInProcessCarInfoLogs[] CarPurchaseInfoLogs { get; set; } = null!;
+        public SoldVsInProcessCarInfoLogsForApiCall[] CarPurchaseInfoLogs { get; set; } = null!;
     }
 }

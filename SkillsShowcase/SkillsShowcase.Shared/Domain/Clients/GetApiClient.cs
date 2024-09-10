@@ -62,9 +62,9 @@ namespace SkillsShowcase.Shared.Domain.Clients
             return await _httpClient.GetFromJsonAsync<List<SessionLogsForApiCall>?>("/api/SessionLogs");
         }
         //Everything with CarPurchaseInfoLogs Table
-        public async Task<List<CarPurchaseInfoLogForApiCall>?> GetApiCarPurchaseInfoLogs()
+        public async Task<List<SoldVsInProcessCarInfoLogsForApiCall>?> GetCarPurchaseInfoLogs()
         {
-            return await _httpClient.GetFromJsonAsync<List<CarPurchaseInfoLogForApiCall>?>("/api/CarPurchaseInfoLogs");
+            return await _httpClient.GetFromJsonAsync<List<SoldVsInProcessCarInfoLogsForApiCall>?>("/api/CarPurchaseInfoLogs");
         }
     }
 }
