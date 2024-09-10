@@ -12,6 +12,8 @@ namespace SkillsShowcase.Components.Pages
         public List<SessionLogsForApiCall> SessionLogsInfoForHomePage { get; set; }
         [Parameter]
         public Dictionary<DateOnly, int> DailySessionsDataForHomePageGraph { get; set; } = null!;
+        [Parameter]
+        public SoldVsInProcessCarInfoLogsForApiCall[] CarPurchaseInfoLogsForHomeBarGraph { get; set; } = null!;
         protected async override Task OnInitializedAsync()
         {
             await GetNeededDataForGraph();
@@ -22,6 +24,8 @@ namespace SkillsShowcase.Components.Pages
             DailySessionsDataForHomePageGraph = SessionLogsInfoForHomePage
                 .GroupBy(x => DateOnly.FromDateTime(x.CreatedTime))
                 .ToDictionary(x => x.Key, x => x.Sum(y => y.SessionCountsPerDate));
+            /*var response = await ApiClient.GetCarPurchaseInfoLogs();
+            CarPurchaseInfoLogsForHomeBarGraph = response.ToArray();*/
         }
     }
 }
