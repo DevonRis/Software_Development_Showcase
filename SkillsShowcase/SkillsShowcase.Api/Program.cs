@@ -26,6 +26,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<GuitarService>();
 builder.Services.AddScoped<GuitarRepository>();
+builder.Services.AddScoped<CarInfoLogsService>();
+builder.Services.AddScoped<CarInfoLogsRepository>();
 
 var app = builder.Build();
 
