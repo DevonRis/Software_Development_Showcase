@@ -31,6 +31,7 @@ namespace SkillsShowcase.Components.Pages.LayeredPages
             SessionLogsInfo = await GetSessionLogsAPIs.GetApiSessionLogs();
             DailySessionsDataForBarGraph = SessionLogsInfo
                 .GroupBy(x => DateOnly.FromDateTime(x.CreatedTime))
+                .OrderByDescending(x => x.Key)
                 .ToDictionary(x => x.Key, x => x.Sum(y => y.SessionCountsPerDate));
         }
         private async Task RenderBarChart()

@@ -1,5 +1,4 @@
 ﻿using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
-using System;
 
 namespace SkillsShowcase.Api.Models.Data.Repositories
 {

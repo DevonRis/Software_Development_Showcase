@@ -12,8 +12,8 @@ using SkillsShowcase.Api.Models.Data;
 namespace SkillsShowcase.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240828192059_SeedDataSessionLogs")]
-    partial class SeedDataSessionLogs
+    [Migration("20240909195912_RestoredData")]
+    partial class RestoredData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,266 @@ namespace SkillsShowcase.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.CarPurchaseEventTypes", b =>
+                {
+                    b.Property<int>("CarPurchaseEventTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CarPurchaseEventTypeDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarPurchaseEventTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CarPurchaseEventTypeId");
+
+                    b.ToTable("CarPurchaseEventTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            CarPurchaseEventTypeId = 0,
+                            CarPurchaseEventTypeDescription = "Car In process of getting bought but not sold yet.",
+                            CarPurchaseEventTypeName = "CarPurchaseInProcess"
+                        },
+                        new
+                        {
+                            CarPurchaseEventTypeId = 1,
+                            CarPurchaseEventTypeDescription = "Credit check in review but approved yet.",
+                            CarPurchaseEventTypeName = "CreditCheckInReview"
+                        },
+                        new
+                        {
+                            CarPurchaseEventTypeId = 2,
+                            CarPurchaseEventTypeDescription = "Credit has been declined. Customer must purchase in cash.",
+                            CarPurchaseEventTypeName = "CreditDeclined"
+                        },
+                        new
+                        {
+                            CarPurchaseEventTypeId = 3,
+                            CarPurchaseEventTypeDescription = "Credit has been accepted. Customer can purchase in credit.",
+                            CarPurchaseEventTypeName = "CreditAccepted"
+                        },
+                        new
+                        {
+                            CarPurchaseEventTypeId = 4,
+                            CarPurchaseEventTypeDescription = "Car has been sold.",
+                            CarPurchaseEventTypeName = "CarsSold"
+                        },
+                        new
+                        {
+                            CarPurchaseEventTypeId = 5,
+                            CarPurchaseEventTypeDescription = "Car cannot be given to customer without full down payment.",
+                            CarPurchaseEventTypeName = "CarsPurchaseHold"
+                        },
+                        new
+                        {
+                            CarPurchaseEventTypeId = 6,
+                            CarPurchaseEventTypeDescription = "Customer bought car but not yet in physical store.",
+                            CarPurchaseEventTypeName = "CarsInRouteForPurchase"
+                        });
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.CarPurchaseInfoLog", b =>
+                {
+                    b.Property<int>("CarPurchaseInfoLogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarPurchaseInfoLogId"));
+
+                    b.Property<DateTime>("CarArrivalInDealership")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CarModel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarModelPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarModelQuantityLeft")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CarPurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CarPurchaseStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerCreditStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CarPurchaseInfoLogId");
+
+                    b.HasIndex("CarPurchaseStatus");
+
+                    b.ToTable("CarPurchaseInfoLogs");
+
+                    b.HasData(
+                        new
+                        {
+                            CarPurchaseInfoLogId = 1,
+                            CarArrivalInDealership = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 60,
+                            CarModelPrice = 40000,
+                            CarModelQuantityLeft = 10,
+                            CarPurchaseDate = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Devon Rismay"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 2,
+                            CarArrivalInDealership = new DateTime(2023, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 350,
+                            CarModelPrice = 123000,
+                            CarModelQuantityLeft = 5,
+                            CarPurchaseDate = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "John Hull"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 3,
+                            CarArrivalInDealership = new DateTime(2023, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 300,
+                            CarModelPrice = 92000,
+                            CarModelQuantityLeft = 2,
+                            CarPurchaseDate = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Quinshae Hopkins"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 4,
+                            CarArrivalInDealership = new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 400,
+                            CarModelPrice = 65000,
+                            CarModelQuantityLeft = 3,
+                            CarPurchaseDate = new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Robert Pyron"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 5,
+                            CarArrivalInDealership = new DateTime(2022, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 80,
+                            CarModelPrice = 236000,
+                            CarModelQuantityLeft = 2,
+                            CarPurchaseDate = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 0,
+                            CustomerCreditStatus = 1,
+                            CustomerName = "John Goldeen"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 6,
+                            CarArrivalInDealership = new DateTime(2020, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 200,
+                            CarModelPrice = 101000,
+                            CarModelQuantityLeft = 7,
+                            CarPurchaseDate = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 0,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Crystal Myrondeen"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 7,
+                            CarArrivalInDealership = new DateTime(2018, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 120,
+                            CarModelPrice = 95000,
+                            CarModelQuantityLeft = 9,
+                            CarPurchaseDate = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 5,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "James Mayfield"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 8,
+                            CarArrivalInDealership = new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 100,
+                            CarModelPrice = 80000,
+                            CarModelQuantityLeft = 1,
+                            CarPurchaseDate = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 6,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Chris Mayson"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 9,
+                            CarArrivalInDealership = new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 150,
+                            CarModelPrice = 120000,
+                            CarModelQuantityLeft = 5,
+                            CarPurchaseDate = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Barack Husaine"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 10,
+                            CarArrivalInDealership = new DateTime(2016, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 250,
+                            CarModelPrice = 150000,
+                            CarModelQuantityLeft = 1,
+                            CarPurchaseDate = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 0,
+                            CustomerCreditStatus = 1,
+                            CustomerName = "Johnson Crayfield"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 11,
+                            CarArrivalInDealership = new DateTime(2019, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 500,
+                            CarModelPrice = 250000,
+                            CarModelQuantityLeft = 1,
+                            CarPurchaseDate = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Johnson Jones"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 12,
+                            CarArrivalInDealership = new DateTime(2017, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 600,
+                            CarModelPrice = 300000,
+                            CarModelQuantityLeft = 1,
+                            CarPurchaseDate = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 4,
+                            CustomerCreditStatus = 3,
+                            CustomerName = "Eugene Paniccia"
+                        },
+                        new
+                        {
+                            CarPurchaseInfoLogId = 13,
+                            CarArrivalInDealership = new DateTime(2015, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarModel = 90,
+                            CarModelPrice = 80000,
+                            CarModelQuantityLeft = 13,
+                            CarPurchaseDate = new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CarPurchaseStatus = 0,
+                            CustomerCreditStatus = 1,
+                            CustomerName = "Natalie Cyris"
+                        });
+                });
 
             modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.DcVillains", b =>
                 {
@@ -218,6 +478,36 @@ namespace SkillsShowcase.Api.Migrations
                             LastName = "Rismay",
                             MaritalStatus = 0,
                             PhoneNumber = "8322156677"
+                        },
+                        new
+                        {
+                            EmployeeId = 2,
+                            Email = "JohnHull@gmail.com",
+                            FirstName = "John",
+                            Gender = 0,
+                            LastName = "Hull",
+                            MaritalStatus = 0,
+                            PhoneNumber = "8322156676"
+                        },
+                        new
+                        {
+                            EmployeeId = 3,
+                            Email = "QuinshaeHopkins@gmail.com",
+                            FirstName = "Quinshae",
+                            Gender = 1,
+                            LastName = "Hopkins",
+                            MaritalStatus = 0,
+                            PhoneNumber = "8322156674"
+                        },
+                        new
+                        {
+                            EmployeeId = 4,
+                            Email = "RobertPyron@gmail.com",
+                            FirstName = "Robert",
+                            Gender = 0,
+                            LastName = "Pyron",
+                            MaritalStatus = 1,
+                            PhoneNumber = "8322156675"
                         });
                 });
 
@@ -382,7 +672,7 @@ namespace SkillsShowcase.Api.Migrations
                     b.HasData(
                         new
                         {
-                            SessionId = new Guid("92e289eb-8da5-4554-9d4d-65fbec329e9d"),
+                            SessionId = new Guid("dc3e54e7-cd98-4c11-862e-392dbb8e6f0b"),
                             CreatedTime = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "01.6.0.20",
                             SessionCountsPerDate = 1,
@@ -390,7 +680,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("5c66c0d2-73f6-4af7-b5ba-5d3e964a3cfa"),
+                            SessionId = new Guid("36a64815-7d01-44eb-8d91-130eed5a3c57"),
                             CreatedTime = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "02.6.0.20",
                             SessionCountsPerDate = 15,
@@ -398,7 +688,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("5555319c-7df6-490d-8aa2-1edaa0bea797"),
+                            SessionId = new Guid("bb76adc6-d4ef-42c5-9f27-d46e626dbc1d"),
                             CreatedTime = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "03.6.0.20",
                             SessionCountsPerDate = 30,
@@ -406,7 +696,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("8291f0fb-a1be-4056-bbae-0034840c1a2e"),
+                            SessionId = new Guid("59c2a66c-5b45-44b3-99df-6ccbee555505"),
                             CreatedTime = new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "04.6.0.20",
                             SessionCountsPerDate = 23,
@@ -414,7 +704,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("61e97007-452d-4a0d-a107-cbf3f76fd8e9"),
+                            SessionId = new Guid("68511be5-5a35-4d68-96f8-4fa5e8ca855f"),
                             CreatedTime = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "05.6.0.20",
                             SessionCountsPerDate = 43,
@@ -422,7 +712,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("0ee967b6-591e-4aff-83ce-a9ebf0a33de4"),
+                            SessionId = new Guid("3f40d390-c706-4366-bbb8-337042c6ae3a"),
                             CreatedTime = new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "06.6.0.20",
                             SessionCountsPerDate = 2,
@@ -430,7 +720,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("677a43f3-48a2-4527-9e28-6547ff6f0637"),
+                            SessionId = new Guid("44a03290-fb76-40fb-b3be-b9006e7fa4d3"),
                             CreatedTime = new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "07.6.0.20",
                             SessionCountsPerDate = 6,
@@ -438,7 +728,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("684c1fab-5015-4457-b675-dc7d49a9bbf7"),
+                            SessionId = new Guid("c45c4a22-2b3c-47ed-8390-ad5473295925"),
                             CreatedTime = new DateTime(2024, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "08.6.0.20",
                             SessionCountsPerDate = 33,
@@ -446,7 +736,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("9ce37660-95ff-4126-ad98-19e551fcf55a"),
+                            SessionId = new Guid("321a238a-086d-45d7-a407-1c0695d57bcb"),
                             CreatedTime = new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "09.6.0.20",
                             SessionCountsPerDate = 20,
@@ -454,7 +744,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("913a2029-7c2d-4e68-b9e0-455db4a62284"),
+                            SessionId = new Guid("4fbee5bd-55ba-430f-b899-3d24399e2cf1"),
                             CreatedTime = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "10.6.0.20",
                             SessionCountsPerDate = 52,
@@ -462,7 +752,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("8dd305c9-6ddf-406c-8558-0570597db647"),
+                            SessionId = new Guid("77a1b4f3-9fb9-4450-9fe9-8599fb20384a"),
                             CreatedTime = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "11.6.0.20",
                             SessionCountsPerDate = 10,
@@ -470,12 +760,21 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("3d8d9d50-658a-470d-8f23-88a775619c8d"),
+                            SessionId = new Guid("738c8d6b-4086-4bcc-9db8-deae0bb669c0"),
                             CreatedTime = new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "12.6.0.20",
                             SessionCountsPerDate = 49,
                             UserAgent = "Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36"
                         });
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.CarPurchaseInfoLog", b =>
+                {
+                    b.HasOne("SkillsShowcase.Shared.Domain.Models.CarPurchaseEventTypes", null)
+                        .WithMany()
+                        .HasForeignKey("CarPurchaseStatus")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
