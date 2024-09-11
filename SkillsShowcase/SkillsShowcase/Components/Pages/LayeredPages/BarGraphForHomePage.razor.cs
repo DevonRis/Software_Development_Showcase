@@ -40,7 +40,7 @@ namespace SkillsShowcase.Components.Pages.LayeredPages
                 .ToList();
             var barChartData = DailySessionsDataForBarGraph.Values
                 .ToList();
-            await JSRuntime.InvokeVoidAsync("renderBarChart", "barChartCanvas", barChartLabels, barChartData);
+            await JSRuntime.InvokeVoidAsync("renderBarChart", "barChartCanvasOne", barChartLabels, barChartData);
         }
     }
 }

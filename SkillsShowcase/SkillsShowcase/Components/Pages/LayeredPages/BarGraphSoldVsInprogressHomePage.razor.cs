@@ -13,25 +13,31 @@ namespace SkillsShowcase.Components.Pages.LayeredPages
         private IJSRuntime JSRuntime { get; set; }
         [Parameter]
         public SoldVsInProcessCarInfoLogsForApiCall[] CarPurchaseInfoLogsForBarGraph { get; set; } = null!;
-        protected async override Task OnInitializedAsync()
-        {
-            await GetSoldVsInProcessForBarGraph();
-        }
+        [Parameter]
+        public int SoldCars { get; set; }
+        [Parameter]
+        public int InProcessCars { get; set; }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
+                await GetSoldVsInProcessForBarGraph();
                 await RenderBarChart();
             }
         }
         private async Task GetSoldVsInProcessForBarGraph()
         {
             var response = await ApiClient.GetCarPurchaseInfoLogs();
-            CarPurchaseInfoLogsForBarGraph = response.ToArray();
+            CarPurchaseInfoLogsForBarGraph = response!.ToArray();
+            SoldCars = CarPurchaseInfoLogsForBarGraph
+                .Where(cars => cars.SoldCars == 1).Count();
+            InProcessCars = CarPurchaseInfoLogsForBarGraph
+                .Where(cars => cars.InProcessCars == 1).Count();
         }
+        [JSInvokable]
         private async Task RenderBarChart()
         {
-            await JSRuntime.InvokeVoidAsync("renderBarChart", CarPurchaseInfoLogsForBarGraph);
+            await JSRuntime.InvokeVoidAsync("renderBarChartTwo", SoldCars, InProcessCars);
         }
     }
 }

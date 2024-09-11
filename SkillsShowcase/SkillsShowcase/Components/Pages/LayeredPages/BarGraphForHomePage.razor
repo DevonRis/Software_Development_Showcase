@@ -1,10 +1,10 @@
 ﻿@rendermode InteractiveServer
 
-<canvas id="barChartCanvas"></canvas>
+<canvas id="barChartCanvasOne"></canvas>
 
 <script>
-    function renderBarChart(barChartCanvas, barChartLabels, barChartData) {
-        var canvasForChart = document.getElementById(barChartCanvas).getContext('2d');
+    function renderBarChart(barChartCanvasOne, barChartLabels, barChartData) {
+        var canvasForChart = document.getElementById(barChartCanvasOne).getContext('2d');
         new Chart(canvasForChart, {
             type: 'bar',
             data: {
@@ -21,11 +21,11 @@
                 plugins: {
                     legend: {
                         labels: {
-                            usePointStyle: true, // This will make the legend box a circle instead of a square
-                            pointStyle: 'rectRounded', // You can use 'circle', 'rect', 'rectRounded', 'rectRot', 'triangle', 'star', 'line', 'dash'
-                            boxWidth: 20, // Width of the box
-                            padding: 20, // Padding around the box
-                            color: '#333', // Text color for the label
+                            usePointStyle: true,
+                            pointStyle: 'rectRounded',
+                            boxWidth: 20,
+                            padding: 20,
+                            color: '#333',
                             font: {
                                 size: 14,
                                 family: 'Arial',
