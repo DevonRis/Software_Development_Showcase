@@ -37,7 +37,7 @@ namespace SkillsShowcase.Components.Pages.LayeredPages
         [JSInvokable]
         private async Task RenderBarChart()
         {
-            await JSRuntime.InvokeVoidAsync("renderBarChart", SoldCars, InProcessCars);
+            await JSRuntime.InvokeVoidAsync("renderBarChartTwo", SoldCars, InProcessCars);
         }
     }
 }

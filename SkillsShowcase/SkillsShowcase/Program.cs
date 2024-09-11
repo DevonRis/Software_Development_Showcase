@@ -23,6 +23,8 @@ builder.Services.AddAuthentication("SkillsShowcaseUser")
         googleOptions.ClientSecret = googleClientSecret;
     })
     .AddIdentityCookies();
+builder.Services.AddServerSideBlazor()
+    .AddCircuitOptions(options => { options.DetailedErrors = true; });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

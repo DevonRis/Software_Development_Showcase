@@ -14,9 +14,19 @@ namespace SkillsShowcase.Components.Pages
         public Dictionary<DateOnly, int> DailySessionsDataForHomePageGraph { get; set; } = null!;
         [Parameter]
         public SoldVsInProcessCarInfoLogsForApiCall[] CarPurchaseInfoLogsForHomeBarGraph { get; set; } = null!;
+        public int SoldCars { get; set; }
+        public int InProcessCars { get; set; }
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await GetSoldVsInProcessForBarGraph();
+            }
+        }
         protected async override Task OnInitializedAsync()
         {
             await GetNeededDataForGraph();
+            await GetSoldVsInProcessForBarGraph();
         }
         private async Task GetNeededDataForGraph()
         {
@@ -24,8 +34,15 @@ namespace SkillsShowcase.Components.Pages
             DailySessionsDataForHomePageGraph = SessionLogsInfoForHomePage
                 .GroupBy(x => DateOnly.FromDateTime(x.CreatedTime))
                 .ToDictionary(x => x.Key, x => x.Sum(y => y.SessionCountsPerDate));
-            /*var response = await ApiClient.GetCarPurchaseInfoLogs();
-            CarPurchaseInfoLogsForHomeBarGraph = response.ToArray();*/
+        }
+        private async Task GetSoldVsInProcessForBarGraph()
+        {
+            var response = await ApiClient.GetCarPurchaseInfoLogs();
+            CarPurchaseInfoLogsForHomeBarGraph = response!.ToArray();
+            SoldCars = CarPurchaseInfoLogsForHomeBarGraph
+                .Where(cars => cars.SoldCars == 1).Count();
+            InProcessCars = CarPurchaseInfoLogsForHomeBarGraph
+                .Where(cars => cars.InProcessCars == 1).Count();
         }
     }
 }

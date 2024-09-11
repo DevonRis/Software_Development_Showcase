@@ -1,13 +1,10 @@
-﻿@page "/BarGraphSoldVsInprogressHomePage"
-@rendermode InteractiveServer
+﻿@rendermode InteractiveServer
 
-<canvas id="barChartCanvas"></canvas>
+<canvas id="barChartCanvasTwo"></canvas>
 
 <script>
-    window.renderBarChart = async (soldCars, inProcessCars) => {
-        console.log('Sold Cars:', soldCars);
-        console.log('In Progress Cars:', inProcessCars);
-        var canvasForChart = document.getElementById('barChartCanvas').getContext('2d');
+    window.renderBarChartTwo = async (soldCars, inProcessCars) => {
+        var canvasForChart = document.getElementById('barChartCanvasTwo').getContext('2d');
         var barChart = new Chart(canvasForChart, {
             type: 'bar',
             data: {
