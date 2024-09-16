@@ -1,4 +1,4 @@
-﻿.dashboard-container {
+.dashboard-container {
     padding: 20px;
     background-color: khaki;
     border-radius: 8px;
@@ -33,4 +33,3 @@ h1 {
     .grid-container {
         grid-template-columns: 1fr;
     }
-}
