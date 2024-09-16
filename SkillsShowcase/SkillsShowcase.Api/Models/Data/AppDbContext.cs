@@ -19,6 +19,7 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<CarPurchaseEventTypes> CarPurchaseEventTypes { get; set; }
         public DbSet<CarPurchaseInfoLog> CarPurchaseInfoLogs { get; set; }
         public DbSet<FirstQuarterRevenue> FirstQuarterRevenue { get; set; }
+        public DbSet<MarvelVillains> MarvelVillains { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -601,6 +602,36 @@ namespace SkillsShowcase.Api.Models.Data
                 FirstQuarterRevenueId = 4,
                 MonthRevenue = 9052,
                 Month = FirstQuarterRevenueOptions.April,
+            });
+            modelBuilder.Entity<MarvelVillains>().HasData(new MarvelVillains
+            {
+                MarvelVillanId = 1,
+                VillainName = MarvelVillainsOptions.DoctorDoom,
+                VillainConfirmedKills = 1053,
+            });
+            modelBuilder.Entity<MarvelVillains>().HasData(new MarvelVillains
+            {
+                MarvelVillanId = 2,
+                VillainName = MarvelVillainsOptions.RedSkull,
+                VillainConfirmedKills = 850,
+            });
+            modelBuilder.Entity<MarvelVillains>().HasData(new MarvelVillains
+            {
+                MarvelVillanId = 3,
+                VillainName = MarvelVillainsOptions.Thanos,
+                VillainConfirmedKills = 6021,
+            });
+            modelBuilder.Entity<MarvelVillains>().HasData(new MarvelVillains
+            {
+                MarvelVillanId = 4,
+                VillainName = MarvelVillainsOptions.Loki,
+                VillainConfirmedKills = 2022,
+            });
+            modelBuilder.Entity<MarvelVillains>().HasData(new MarvelVillains
+            {
+                MarvelVillanId = 5,
+                VillainName = MarvelVillainsOptions.GreenGoblin,
+                VillainConfirmedKills = 721,
             });
         }
     }

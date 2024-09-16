@@ -30,6 +30,8 @@ builder.Services.AddScoped<CarInfoLogsService>();
 builder.Services.AddScoped<CarInfoLogsRepository>();
 builder.Services.AddScoped<FirstQuarterRevenueService>();
 builder.Services.AddScoped<FirstQuarterRevenueRepository>();
+builder.Services.AddScoped<MarvelVillainsService>();
+builder.Services.AddScoped<MarvelVillainsRepository>();
 
 var app = builder.Build();
 
