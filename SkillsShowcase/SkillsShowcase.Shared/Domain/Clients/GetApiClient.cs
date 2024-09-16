@@ -71,5 +71,10 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             return await _httpClient.GetFromJsonAsync<List<FirstQuarterRevenueForApiCall>?>("/api/FirstQuarterRevenue");
         }
+        //Everything with MarvelVillains Table
+        public async Task<List<MarvelVillainsForApiCall>?> GetMarvelConfirmedKills()
+        {
+            return await _httpClient.GetFromJsonAsync<List<MarvelVillainsForApiCall>?>("/api/MarvelVillains");
+        }
     }
 }
