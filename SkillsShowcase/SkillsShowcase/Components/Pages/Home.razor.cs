@@ -14,6 +14,8 @@ namespace SkillsShowcase.Components.Pages
         public Dictionary<DateOnly, int> DailySessionsDataForHomePageGraph { get; set; } = null!;
         [Parameter]
         public SoldVsInProcessCarInfoLogsForApiCall[] CarPurchaseInfoLogsForHomeBarGraph { get; set; } = null!;
+        [Parameter]
+        public FirstQuarterRevenueForApiCall[] MonthlyRevenuesForHomeDataCards { get; set; } = null!;
         public int SoldCars { get; set; }
         public int InProcessCars { get; set; }
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -27,6 +29,7 @@ namespace SkillsShowcase.Components.Pages
         {
             await GetNeededDataForGraph();
             await GetSoldVsInProcessForBarGraph();
+            await GetMonthlyRevenuesForDataCards();
         }
         private async Task GetNeededDataForGraph()
         {
@@ -43,6 +46,11 @@ namespace SkillsShowcase.Components.Pages
                 .Where(cars => cars.SoldCars == 1).Count();
             InProcessCars = CarPurchaseInfoLogsForHomeBarGraph
                 .Where(cars => cars.InProcessCars == 1).Count();
+        }
+        private async Task GetMonthlyRevenuesForDataCards() 
+        {
+            var response = await ApiClient.GetFirstQuarterRevenue();
+            MonthlyRevenuesForHomeDataCards = response!.ToArray();
         }
     }
 }

@@ -7,18 +7,25 @@
 @attribute [Authorize]
 
 <h1 align="center">Welcome To My Skills Showcase</h1>
+<DataCardsForHomePage 
+    MonthlyRevenuesForDataCards="@MonthlyRevenuesForHomeDataCards">
+</DataCardsForHomePage>
+<div class="dashboard-container">
+    <h1 align="center">Session Counts & Sales</h1>
+    
+    <div class="grid-container">
+        <div class="chart-item">
+            <BarGraphForHomePage 
+                SessionLogsInfo="@SessionLogsInfoForHomePage" 
+                DailySessionsDataForBarGraph="@DailySessionsDataForHomePageGraph" />
+        </div>
 
-<div>
-    <BarGraphForHomePage 
-        SessionLogsInfo="@SessionLogsInfoForHomePage" 
-        DailySessionsDataForBarGraph="@DailySessionsDataForHomePageGraph">
-    </BarGraphForHomePage>
-</div>
+        <div class="chart-item">
+            <BarGraphSoldVsInprogressHomePage 
+                CarPurchaseInfoLogsForBarGraph="@CarPurchaseInfoLogsForHomeBarGraph" 
+                SoldCars="@SoldCars" 
+                InProcessCars="@InProcessCars" />
+        </div>
+    </div>
 
-<div>
-    <BarGraphSoldVsInprogressHomePage 
-        CarPurchaseInfoLogsForBarGraph="@CarPurchaseInfoLogsForHomeBarGraph" 
-        SoldCars="@SoldCars" 
-        InProcessCars="@InProcessCars">
-    </BarGraphSoldVsInprogressHomePage>
 </div>

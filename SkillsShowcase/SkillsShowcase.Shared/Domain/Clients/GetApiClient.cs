@@ -66,5 +66,10 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             return await _httpClient.GetFromJsonAsync<List<SoldVsInProcessCarInfoLogsForApiCall>?>("/api/CarPurchaseInfoLogs");
         }
+        //Everything with FirstQuarterRevenue Table
+        public async Task<List<FirstQuarterRevenueForApiCall>?> GetFirstQuarterRevenue()
+        {
+            return await _httpClient.GetFromJsonAsync<List<FirstQuarterRevenueForApiCall>?>("/api/FirstQuarterRevenue");
+        }
     }
 }

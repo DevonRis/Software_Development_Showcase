@@ -36,7 +36,7 @@ namespace SkillsShowcase.Components.Pages.LayeredPages
         private async Task RenderBarChart()
         {
             var barChartLabels = DailySessionsDataForBarGraph.Keys
-                .Select(x => x.ToString("MM/dd/yyyy"))
+                .Select(x => x.ToString("MM/dd"))
                 .ToList();
             var barChartData = DailySessionsDataForBarGraph.Values
                 .ToList();
