@@ -18,6 +18,7 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<SessionLogs> SessionLogs { get; set; }
         public DbSet<CarPurchaseEventTypes> CarPurchaseEventTypes { get; set; }
         public DbSet<CarPurchaseInfoLog> CarPurchaseInfoLogs { get; set; }
+        public DbSet<FirstQuarterRevenue> FirstQuarterRevenue { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -576,6 +577,30 @@ namespace SkillsShowcase.Api.Models.Data
                 CarModelQuantityLeft = 13,
                 CustomerName = "Natalie Cyris",
                 CustomerCreditStatus = CarPurchaseEventTypeOption.CreditCheckInReview
+            });
+            modelBuilder.Entity<FirstQuarterRevenue>().HasData(new FirstQuarterRevenue
+            {
+                FirstQuarterRevenueId = 1,
+                MonthRevenue = 4015,
+                Month = FirstQuarterRevenueOptions.January,
+            });
+            modelBuilder.Entity<FirstQuarterRevenue>().HasData(new FirstQuarterRevenue
+            {
+                FirstQuarterRevenueId = 2,
+                MonthRevenue = 10043,
+                Month = FirstQuarterRevenueOptions.February,
+            });
+            modelBuilder.Entity<FirstQuarterRevenue>().HasData(new FirstQuarterRevenue
+            {
+                FirstQuarterRevenueId = 3,
+                MonthRevenue = 7023,
+                Month = FirstQuarterRevenueOptions.March,
+            });
+            modelBuilder.Entity<FirstQuarterRevenue>().HasData(new FirstQuarterRevenue
+            {
+                FirstQuarterRevenueId = 4,
+                MonthRevenue = 9052,
+                Month = FirstQuarterRevenueOptions.April,
             });
         }
     }

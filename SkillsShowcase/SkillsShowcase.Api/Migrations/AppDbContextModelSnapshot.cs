@@ -37,7 +37,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("CarPurchaseEventTypeId");
 
-                    b.ToTable("CarPurchaseEventTypes");
+                    b.ToTable("CarPurchaseEventTypes", (string)null);
 
                     b.HasData(
                         new
@@ -121,7 +121,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasIndex("CarPurchaseStatus");
 
-                    b.ToTable("CarPurchaseInfoLogs");
+                    b.ToTable("CarPurchaseInfoLogs", (string)null);
 
                     b.HasData(
                         new
@@ -316,7 +316,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("DcVillanId");
 
-                    b.ToTable("DcVillains");
+                    b.ToTable("DcVillains", (string)null);
 
                     b.HasData(
                         new
@@ -463,7 +463,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("EmployeeId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
 
                     b.HasData(
                         new
@@ -524,7 +524,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeeSecretKeys");
+                    b.ToTable("EmployeeSecretKeys", (string)null);
 
                     b.HasData(
                         new
@@ -575,7 +575,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("GuitarId");
 
-                    b.ToTable("Guitars");
+                    b.ToTable("Guitars", (string)null);
 
                     b.HasData(
                         new
@@ -664,7 +664,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("SessionId");
 
-                    b.ToTable("SessionLogs");
+                    b.ToTable("SessionLogs", (string)null);
 
                     b.HasData(
                         new

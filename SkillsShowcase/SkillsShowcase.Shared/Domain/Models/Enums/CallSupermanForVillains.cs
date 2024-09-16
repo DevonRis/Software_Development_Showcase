@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SkillsShowcase.Shared.Domain.Models.Enums
+﻿namespace SkillsShowcase.Shared.Domain.Models.Enums
 {
     public enum CallSupermanForVillains
     {

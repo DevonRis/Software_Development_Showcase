@@ -1,0 +1,21 @@
+﻿@if (MonthlyRevenuesForDataCards == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="data-card-container">
+        @foreach (var item in MonthlyRevenuesForDataCards)
+        {
+        <div class="data-card">
+            <div class="card-content">
+                <h2>@item.Month</h2>
+                <p>@item.MonthRevenue.ToString("")</p>
+            </div>
+            <div class="card-footer">
+                <small>Revenue for @item.Month</small>
+            </div>
+        </div>
+        }
+    </div>
+}

@@ -28,6 +28,8 @@ builder.Services.AddScoped<GuitarService>();
 builder.Services.AddScoped<GuitarRepository>();
 builder.Services.AddScoped<CarInfoLogsService>();
 builder.Services.AddScoped<CarInfoLogsRepository>();
+builder.Services.AddScoped<FirstQuarterRevenueService>();
+builder.Services.AddScoped<FirstQuarterRevenueRepository>();
 
 var app = builder.Build();
 
