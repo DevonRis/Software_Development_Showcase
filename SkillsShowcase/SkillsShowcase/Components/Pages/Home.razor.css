@@ -33,3 +33,9 @@ h1 {
     .grid-container {
         grid-template-columns: 1fr;
     }
+}
+
+#doughnutChart {
+    height: 600px;
+    width: 600px;
+}

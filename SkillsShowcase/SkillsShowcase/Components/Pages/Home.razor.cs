@@ -16,6 +16,8 @@ namespace SkillsShowcase.Components.Pages
         public SoldVsInProcessCarInfoLogsForApiCall[] CarPurchaseInfoLogsForHomeBarGraph { get; set; } = null!;
         [Parameter]
         public FirstQuarterRevenueForApiCall[] MonthlyRevenuesForHomeDataCards { get; set; } = null!;
+        [Parameter]
+        public MarvelVillainsForApiCall[] MarvelVillainsForHomeDoughnutChart { get; set; } = null!;
         public int SoldCars { get; set; }
         public int InProcessCars { get; set; }
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -30,6 +32,7 @@ namespace SkillsShowcase.Components.Pages
             await GetNeededDataForGraph();
             await GetSoldVsInProcessForBarGraph();
             await GetMonthlyRevenuesForDataCards();
+            await GetMarvelVillainsForDoughnutChart();
         }
         private async Task GetNeededDataForGraph()
         {
@@ -51,6 +54,11 @@ namespace SkillsShowcase.Components.Pages
         {
             var response = await ApiClient.GetFirstQuarterRevenue();
             MonthlyRevenuesForHomeDataCards = response!.ToArray();
+        }
+        private async Task GetMarvelVillainsForDoughnutChart()
+        {
+            var response = await ApiClient.GetMarvelConfirmedKills();
+            MarvelVillainsForHomeDoughnutChart = response!.ToArray();
         }
     }
 }
