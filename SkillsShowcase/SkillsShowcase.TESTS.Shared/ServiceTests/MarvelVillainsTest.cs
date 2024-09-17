@@ -22,11 +22,10 @@ namespace SkillsShowcase.TESTS.Shared.ServiceTests
             MarvelVillainsResponse response = await marvelVillainsService.GetMarvelVillainsConfirmedKills();
             var doctorDoom = response.MarvelVillainsConfirmedKills
                 .Where(villain => villain.VillainName == MarvelVillainsOptions.DoctorDoom).FirstOrDefault();
-            int doctorDoomKills = response.MarvelVillainsConfirmedKills
-                .Where(villain => villain.VillainConfirmedKills == 1053).Count();
+            var doctorDoomKills = response.MarvelVillainsConfirmedKills
+                .Where(villain => villain.VillainConfirmedKills == 1053).FirstOrDefault();
             Assert.AreEqual(MarvelVillainsOptions.DoctorDoom, doctorDoom.VillainName);
-            Assert.AreEqual(1053, doctorDoomKills);
-
+            Assert.AreEqual(1053, doctorDoomKills.VillainConfirmedKills);
         }
     }
 }
