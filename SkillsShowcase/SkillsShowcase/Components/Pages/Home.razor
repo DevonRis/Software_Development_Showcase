@@ -7,9 +7,11 @@
 @attribute [Authorize]
 
 <h1 align="center">Welcome To My Skills Showcase</h1>
+
 <DataCardsForHomePage 
     MonthlyRevenuesForDataCards="@MonthlyRevenuesForHomeDataCards">
 </DataCardsForHomePage>
+
 <div class="dashboard-container">
     <h1 align="center">Session Counts & Sales</h1>
     
@@ -28,4 +30,9 @@
         </div>
     </div>
 
+</div>
+<div id="doughnutChart">
+    <MarvelVillainsDoughnutChart 
+        MarvelVillainsForDoughnutChart="@MarvelVillainsForHomeDoughnutChart">
+    </MarvelVillainsDoughnutChart>
 </div>

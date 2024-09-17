@@ -34,3 +34,8 @@ h1 {
         grid-template-columns: 1fr;
     }
 }
+
+#doughnutChart {
+    height: 600px;
+    width: 600px;
+}
