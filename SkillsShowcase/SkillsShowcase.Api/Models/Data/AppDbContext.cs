@@ -20,6 +20,7 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<CarPurchaseInfoLog> CarPurchaseInfoLogs { get; set; }
         public DbSet<FirstQuarterRevenue> FirstQuarterRevenue { get; set; }
         public DbSet<MarvelVillains> MarvelVillains { get; set; }
+        public DbSet<FavoriteMusicians> FavoriteMusicians { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

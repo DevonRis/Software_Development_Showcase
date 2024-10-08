@@ -26,7 +26,7 @@ namespace SkillsShowcase.Components.Pages
         {
             Employees = await GetEmployeesAPIs.GetApiEmployeesTable();
         }
-        private async Task ShowEmployeeSecretsModal(int employeeId)//     Must Pass in from whats clicked in the UI
+        private async Task ShowEmployeeSecretsModal(int employeeId) //Must Pass in from whats clicked in the UI
         {
             EmployeeSecrets = await GetSecretsAPIs.GetApiEmployeeSecretKeys();
             

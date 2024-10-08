@@ -32,6 +32,8 @@ builder.Services.AddScoped<FirstQuarterRevenueService>();
 builder.Services.AddScoped<FirstQuarterRevenueRepository>();
 builder.Services.AddScoped<MarvelVillainsService>();
 builder.Services.AddScoped<MarvelVillainsRepository>();
+builder.Services.AddScoped<FavoriteMusiciansService>();
+builder.Services.AddScoped<FavoriteMusiciansRepository>();
 
 var app = builder.Build();
 
