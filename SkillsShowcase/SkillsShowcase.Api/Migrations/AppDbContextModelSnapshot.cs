@@ -37,7 +37,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("CarPurchaseEventTypeId");
 
-                    b.ToTable("CarPurchaseEventTypes", (string)null);
+                    b.ToTable("CarPurchaseEventTypes");
 
                     b.HasData(
                         new
@@ -121,7 +121,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasIndex("CarPurchaseStatus");
 
-                    b.ToTable("CarPurchaseInfoLogs", (string)null);
+                    b.ToTable("CarPurchaseInfoLogs");
 
                     b.HasData(
                         new
@@ -316,7 +316,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("DcVillanId");
 
-                    b.ToTable("DcVillains", (string)null);
+                    b.ToTable("DcVillains");
 
                     b.HasData(
                         new
@@ -463,7 +463,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("EmployeeId");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
 
                     b.HasData(
                         new
@@ -524,7 +524,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeeSecretKeys", (string)null);
+                    b.ToTable("EmployeeSecretKeys");
 
                     b.HasData(
                         new
@@ -553,6 +553,79 @@ namespace SkillsShowcase.Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.FavoriteMusicians", b =>
+                {
+                    b.Property<int>("FavoriteMusiciansId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FavoriteMusiciansId"));
+
+                    b.Property<int>("DeathStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("FirstShow")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastShow")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MusicianName")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MusiciansBIO")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FavoriteMusiciansId");
+
+                    b.ToTable("FavoriteMusicians");
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.FirstQuarterRevenue", b =>
+                {
+                    b.Property<int>("FirstQuarterRevenueId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FirstQuarterRevenueId"));
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MonthRevenue")
+                        .HasColumnType("int");
+
+                    b.HasKey("FirstQuarterRevenueId");
+
+                    b.ToTable("FirstQuarterRevenue");
+
+                    b.HasData(
+                        new
+                        {
+                            FirstQuarterRevenueId = 1,
+                            Month = 1,
+                            MonthRevenue = 4015
+                        },
+                        new
+                        {
+                            FirstQuarterRevenueId = 2,
+                            Month = 2,
+                            MonthRevenue = 10043
+                        },
+                        new
+                        {
+                            FirstQuarterRevenueId = 3,
+                            Month = 3,
+                            MonthRevenue = 7023
+                        },
+                        new
+                        {
+                            FirstQuarterRevenueId = 4,
+                            Month = 4,
+                            MonthRevenue = 9052
+                        });
+                });
+
             modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.Guitars", b =>
                 {
                     b.Property<int>("GuitarId")
@@ -575,7 +648,7 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("GuitarId");
 
-                    b.ToTable("Guitars", (string)null);
+                    b.ToTable("Guitars");
 
                     b.HasData(
                         new
@@ -644,6 +717,320 @@ namespace SkillsShowcase.Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.MarvelVillains", b =>
+                {
+                    b.Property<int>("MarvelVillanId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MarvelVillanId"));
+
+                    b.Property<int?>("VillainConfirmedKills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VillainName")
+                        .HasColumnType("int");
+
+                    b.HasKey("MarvelVillanId");
+
+                    b.ToTable("MarvelVillains");
+
+                    b.HasData(
+                        new
+                        {
+                            MarvelVillanId = 1,
+                            VillainConfirmedKills = 1053,
+                            VillainName = 1
+                        },
+                        new
+                        {
+                            MarvelVillanId = 2,
+                            VillainConfirmedKills = 850,
+                            VillainName = 2
+                        },
+                        new
+                        {
+                            MarvelVillanId = 3,
+                            VillainConfirmedKills = 6021,
+                            VillainName = 3
+                        },
+                        new
+                        {
+                            MarvelVillanId = 4,
+                            VillainConfirmedKills = 2022,
+                            VillainName = 4
+                        },
+                        new
+                        {
+                            MarvelVillanId = 5,
+                            VillainConfirmedKills = 721,
+                            VillainName = 5
+                        });
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.NarutoCharacterDetails", b =>
+                {
+                    b.Property<int>("NarutoCharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CharacterBio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KillCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NarutoCharactersNarutoCharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("NarutoCharacterId");
+
+                    b.HasIndex("NarutoCharactersNarutoCharacterId");
+
+                    b.ToTable("NarutoCharacterDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            NarutoCharacterId = 1,
+                            CharacterBio = "Naruto Uzumaki is the main character of the Naruto series. He is a ninja from the Hidden Leaf Village and current Hokage.",
+                            KillCount = 50,
+                            Status = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 2,
+                            CharacterBio = "Sasuke Uchiha is a rogue ninja from the Hidden Leaf Village. He is a former member of Team 7 and is known for his Sharingan.",
+                            KillCount = 100,
+                            Status = 4
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 3,
+                            CharacterBio = "Sakura Haruno is a ninja from the Hidden Leaf Village. She is a medical ninja and a member of Team 7.",
+                            KillCount = 10,
+                            Status = 2
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 4,
+                            CharacterBio = "Kakashi Hatake is a former Hokage of the Hidden Leaf Village. He is known as the Copy Ninja.",
+                            KillCount = 200,
+                            Status = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 5,
+                            CharacterBio = "Minato Namikaze is the Fourth Hokage of the Hidden Leaf Village. He is known as the Yellow Flash.",
+                            KillCount = 300,
+                            Status = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 6,
+                            CharacterBio = "Madara Uchiha is a rogue ninja from the Hidden Leaf Village. He is known as the founder of the Uchiha clan.",
+                            KillCount = 1000,
+                            Status = 4
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 7,
+                            CharacterBio = "Jiraiya is one of the Legendary Sannin of the Hidden Leaf Village. He is known as the Toad Sage.",
+                            KillCount = 500,
+                            Status = 3
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 8,
+                            CharacterBio = "Onoki is the Third Tsuchikage of the Hidden Stone Village. He is known as the Dust Release user.",
+                            KillCount = 400,
+                            Status = 7
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 9,
+                            CharacterBio = "Zabuza Momochi is a rogue ninja from the Hidden Mist Village. He is known as the Demon of the Hidden Mist.",
+                            KillCount = 300,
+                            Status = 2
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 10,
+                            CharacterBio = "Killer Bee is the Eight Tails Jinchuriki of the Hidden Cloud Village. He is known as the Eight Tails Host.",
+                            KillCount = 200,
+                            Status = 9
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 11,
+                            CharacterBio = "Gaara is the Fifth Kazekage of the Hidden Sand Village. He is known as the One-Tail Jinchuriki.",
+                            KillCount = 150,
+                            Status = 6
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 12,
+                            CharacterBio = "Pain is the leader of the Akatsuki organization. He is known as the Deva Path.",
+                            KillCount = 900,
+                            Status = 4
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 13,
+                            CharacterBio = "Orochimaru is a rogue ninja from the Hidden Sound Village. He is known as the Snake Sannin.",
+                            KillCount = 700,
+                            Status = 3
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 14,
+                            CharacterBio = "Kurama is the Nine Tails Bijuu of the Hidden Leaf Village. He is known as the Nine Tails Fox.",
+                            KillCount = 5000,
+                            Status = 9
+                        });
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.NarutoCharacters", b =>
+                {
+                    b.Property<int>("NarutoCharacterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NarutoCharacterId"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CharacterName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClanBloodline")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Village")
+                        .HasColumnType("int");
+
+                    b.HasKey("NarutoCharacterId");
+
+                    b.ToTable("NarutoCharacters");
+
+                    b.HasData(
+                        new
+                        {
+                            NarutoCharacterId = 1,
+                            Age = 35,
+                            CharacterName = "Naruto Uzumaki",
+                            ClanBloodline = "Uzumaki",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 2,
+                            Age = 36,
+                            CharacterName = "Sasuke Uchiha",
+                            ClanBloodline = "Uchiha",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 3,
+                            Age = 33,
+                            CharacterName = "Sakura Haruno",
+                            ClanBloodline = "None",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 4,
+                            Age = 50,
+                            CharacterName = "Kakashi Hatake",
+                            ClanBloodline = "Hatake",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 5,
+                            Age = 34,
+                            CharacterName = "Minato Namikaze",
+                            ClanBloodline = "None",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 6,
+                            Age = 41,
+                            CharacterName = "Madara Uchiha",
+                            ClanBloodline = "Uchiha",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 7,
+                            Age = 55,
+                            CharacterName = "Jiraiya",
+                            ClanBloodline = "None",
+                            Village = 1
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 8,
+                            Age = 93,
+                            CharacterName = "Onoki",
+                            ClanBloodline = "None",
+                            Village = 5
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 9,
+                            Age = 29,
+                            CharacterName = "Zabuza Momochi",
+                            ClanBloodline = "None",
+                            Village = 3
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 10,
+                            Age = 47,
+                            CharacterName = "Killer Bee",
+                            ClanBloodline = "None",
+                            Village = 4
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 11,
+                            Age = 37,
+                            CharacterName = "Gaara",
+                            ClanBloodline = "None",
+                            Village = 2
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 12,
+                            Age = 40,
+                            CharacterName = "Pain",
+                            ClanBloodline = "None",
+                            Village = 6
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 13,
+                            Age = 79,
+                            CharacterName = "Orochimaru",
+                            ClanBloodline = "None",
+                            Village = 7
+                        },
+                        new
+                        {
+                            NarutoCharacterId = 14,
+                            Age = 200,
+                            CharacterName = "Kurama",
+                            ClanBloodline = "None",
+                            Village = 1
+                        });
+                });
+
             modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.SessionLogs", b =>
                 {
                     b.Property<Guid>("SessionId")
@@ -664,12 +1051,12 @@ namespace SkillsShowcase.Api.Migrations
 
                     b.HasKey("SessionId");
 
-                    b.ToTable("SessionLogs", (string)null);
+                    b.ToTable("SessionLogs");
 
                     b.HasData(
                         new
                         {
-                            SessionId = new Guid("54392352-17c8-438b-897a-116fdb2c2fba"),
+                            SessionId = new Guid("87134a3b-cfd3-4b8a-90b1-cf664ef2094a"),
                             CreatedTime = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "01.6.0.20",
                             SessionCountsPerDate = 1,
@@ -677,7 +1064,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("067b61fb-3736-40f8-b14f-9c98f548a42c"),
+                            SessionId = new Guid("654098a2-411f-447e-b753-affee3a15593"),
                             CreatedTime = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "02.6.0.20",
                             SessionCountsPerDate = 15,
@@ -685,7 +1072,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("85059052-13ee-4d51-9ae0-4d5c62fe1a40"),
+                            SessionId = new Guid("5c81f299-cf67-4cf6-9d63-c3b169b36d70"),
                             CreatedTime = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "03.6.0.20",
                             SessionCountsPerDate = 30,
@@ -693,7 +1080,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("78b43996-dfe4-4097-bd5b-f34855ebccb2"),
+                            SessionId = new Guid("387a3938-66b7-485a-93e2-1b8e2c8dff35"),
                             CreatedTime = new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "04.6.0.20",
                             SessionCountsPerDate = 23,
@@ -701,7 +1088,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("f1352ae5-0421-4ff3-ad92-275bfc81e19e"),
+                            SessionId = new Guid("9b763835-8c13-4737-9bf2-d9aab1ab59cf"),
                             CreatedTime = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "05.6.0.20",
                             SessionCountsPerDate = 43,
@@ -709,7 +1096,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("3a4af92c-b183-487f-a644-96d03e43f0aa"),
+                            SessionId = new Guid("6ce1acc7-c7cf-47c4-9bce-a58d84ecf9b7"),
                             CreatedTime = new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "06.6.0.20",
                             SessionCountsPerDate = 2,
@@ -717,7 +1104,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("603e68ea-e81f-46b0-bcdf-bd2b8424fe17"),
+                            SessionId = new Guid("60f35500-cdf1-41c4-9c24-20d5e1e6075e"),
                             CreatedTime = new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "07.6.0.20",
                             SessionCountsPerDate = 6,
@@ -725,7 +1112,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("b3487638-0b17-461f-bfdb-da5af929223e"),
+                            SessionId = new Guid("81b78387-c241-48f7-8c7a-60249cad3f92"),
                             CreatedTime = new DateTime(2024, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "08.6.0.20",
                             SessionCountsPerDate = 33,
@@ -733,7 +1120,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("d5237fdc-bd65-49f5-98d4-6e34b65b0b99"),
+                            SessionId = new Guid("9b645251-07bf-4131-88f1-9017e9944107"),
                             CreatedTime = new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "09.6.0.20",
                             SessionCountsPerDate = 20,
@@ -741,7 +1128,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("4fab71c8-0116-4bda-8d83-18c141283338"),
+                            SessionId = new Guid("fce2096e-1a38-4417-903e-417679f3a6c3"),
                             CreatedTime = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "10.6.0.20",
                             SessionCountsPerDate = 52,
@@ -749,7 +1136,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("4ee48909-9147-419d-8430-d3b79933bb44"),
+                            SessionId = new Guid("5d137f9f-de57-4481-b8f6-6c67e5648200"),
                             CreatedTime = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "11.6.0.20",
                             SessionCountsPerDate = 10,
@@ -757,7 +1144,7 @@ namespace SkillsShowcase.Api.Migrations
                         },
                         new
                         {
-                            SessionId = new Guid("f796560e-b3ac-4e72-b342-28bebd845042"),
+                            SessionId = new Guid("77104253-28c4-4f76-adcc-cc1083f0cf27"),
                             CreatedTime = new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IpAddress = "12.6.0.20",
                             SessionCountsPerDate = 49,
@@ -772,6 +1159,24 @@ namespace SkillsShowcase.Api.Migrations
                         .HasForeignKey("CarPurchaseStatus")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.NarutoCharacterDetails", b =>
+                {
+                    b.HasOne("SkillsShowcase.Shared.Domain.Models.NarutoCharacters", null)
+                        .WithMany()
+                        .HasForeignKey("NarutoCharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillsShowcase.Shared.Domain.Models.NarutoCharacters", null)
+                        .WithMany("NarutoCharacterDetails")
+                        .HasForeignKey("NarutoCharactersNarutoCharacterId");
+                });
+
+            modelBuilder.Entity("SkillsShowcase.Shared.Domain.Models.NarutoCharacters", b =>
+                {
+                    b.Navigation("NarutoCharacterDetails");
                 });
 #pragma warning restore 612, 618
         }

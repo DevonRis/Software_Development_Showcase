@@ -76,5 +76,10 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             return await _httpClient.GetFromJsonAsync<List<MarvelVillainsForApiCall>?>("/api/MarvelVillains");
         }
+        //Everything with NarutoCharacters Table
+        public async Task<List<NarutoInfoForApiCall>?> GetNarutoInfo()
+        {
+            return await _httpClient.GetFromJsonAsync<List<NarutoInfoForApiCall>?>("/api/NarutoCharacters");
+        }
     }
 }
