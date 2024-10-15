@@ -1,0 +1,16 @@
+﻿CREATE TABLE dbo.FavoriteMusicians (
+    FavoriteMusiciansId INT PRIMARY KEY,
+    MusicianName INT,
+    DeathStatus INT,
+    MusiciansBIO NVARCHAR(MAX),
+    FirstShow DATETIME,
+    LastShow DATETIME
+);
+
+INSERT INTO dbo.FavoriteMusicians (FavoriteMusiciansId, MusicianName, DeathStatus, MusiciansBIO, FirstShow, LastShow)
+VALUES 
+(1, 1, 2, 'Jimi Hendrix (1942-1970) was an iconic American rock guitarist, singer, and songwriter, widely regarded as one of the greatest electric guitarists in music history. Known for his innovative style and electrifying performances, Hendrix fused rock, blues, and psychedelia, creating groundbreaking hits like "Purple Haze" and "All Along the Watchtower." His legendary appearance at Woodstock in 1969 cemented his place in rock history. Despite his short career, Hendrix''s influence on music remains profound and enduring.', '1952-02-10', '1970-09-06'),
+(2, 2, 2, 'Stevie Ray Vaughan (1954-1990) was an influential American blues guitarist, singer, and songwriter, known for revitalizing blues music in the 1980s. His fiery guitar style, blending Texas blues, rock, and jazz, earned him widespread acclaim. Vaughan''s breakthrough album, Texas Flood (1983), showcased his virtuosity and passion. Hits like "Pride and Joy" and "Crossfire" cemented his legacy. Though his life was tragically cut short in a helicopter crash, Vaughan’s impact on blues and rock endures.', '1971-01-05', '1990-08-26'),
+(3, 3, 2, 'Jimmy Smith (1925-2005) was a pioneering American jazz organist, renowned for popularizing the Hammond B-3 organ in jazz. Blending bebop, blues, and soul, Smith developed a unique, groove-driven style that influenced the evolution of soul jazz in the 1950s and 60s. His albums The Sermon! and Back at the Chicken Shack became classics, showcasing his virtuosic playing and rhythmic innovation. Smith''s mastery of the organ redefined its role in jazz, making him one of the most influential jazz musicians of his era.', '1955-10-10', '2004-09-20'),
+(4, 4, 1, 'Carlos Santana (b. 1947) is a legendary Mexican-American guitarist and bandleader known for pioneering a fusion of rock, blues, and Latin American music. His signature sound, blending soulful guitar solos with Afro-Latin rhythms, gained global attention with hits like "Black Magic Woman" and "Oye Como Va." Santana’s groundbreaking performance at Woodstock in 1969 launched his career. With multiple Grammy Awards and a career spanning decades, he remains a transformative figure in the world of music.', '1965-01-10', '2023-12-20'),
+(5, 5, 2, 'Albert King (1923-1992) was an influential American blues guitarist and singer, known for his powerful, soulful playing and deep voice. As one of the "Three Kings of the Blues" alongside B.B. King and Freddie King, Albert King shaped modern blues with his left-handed, upside-down guitar style. His 1967 album Born Under a Bad Sign produced hits like the title track, influencing generations of rock and blues guitarists. King''s emotive style and distinctive sound left a lasting legacy in blues music.', '1951-06-10', '1992-12-19');

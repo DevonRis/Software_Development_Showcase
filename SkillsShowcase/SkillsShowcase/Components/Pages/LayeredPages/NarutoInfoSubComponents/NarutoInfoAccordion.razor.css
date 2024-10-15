@@ -1,0 +1,28 @@
+﻿#headerInfo {
+    display: flex;
+    gap: 10px;
+}
+
+.accordion-header {
+    background-color: #f8f9fa;
+    border: 0.5px solid #e9ecef;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.accordion-button.collapsed {
+    color: #495057;
+    background-color: transparent;
+}
+
+.accordion-body {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-start;
+    align-items: center;
+}

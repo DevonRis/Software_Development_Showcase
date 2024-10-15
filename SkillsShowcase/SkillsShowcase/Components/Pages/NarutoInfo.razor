@@ -1,0 +1,6 @@
+﻿@page "/NarutoInfo"
+@using Microsoft.AspNetCore.Authorization
+@using SkillsShowcase.Components.Pages.LayeredPages.NarutoInfoSubComponents
+@attribute [Authorize]
+
+<NarutoInfoAccordion NarutoInfoDataAccordion="@NarutoInfoData"></NarutoInfoAccordion>

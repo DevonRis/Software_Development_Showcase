@@ -20,6 +20,9 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<CarPurchaseInfoLog> CarPurchaseInfoLogs { get; set; }
         public DbSet<FirstQuarterRevenue> FirstQuarterRevenue { get; set; }
         public DbSet<MarvelVillains> MarvelVillains { get; set; }
+        public DbSet<FavoriteMusicians> FavoriteMusicians { get; set; }
+        public DbSet<NarutoCharacters> NarutoCharacters { get; set; }
+        public DbSet<NarutoCharacterDetails> NarutoCharacterDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -32,6 +35,11 @@ namespace SkillsShowcase.Api.Models.Data
                 .WithMany()
                 .HasForeignKey(log => log.CarPurchaseStatus)
                 .HasPrincipalKey(e => e.CarPurchaseEventTypeId);
+            modelBuilder.Entity<NarutoCharacterDetails>()
+                .HasOne<NarutoCharacters>()
+                .WithMany(c => c.NarutoCharacterDetails)
+                .HasForeignKey(d => d.NarutoCharacterId)
+                .HasConstraintName("FK_NarutoCharacters_NarutoCharacterDetails");
 
             modelBuilder.Entity<Employee>().HasData(
             new Employee
@@ -632,6 +640,216 @@ namespace SkillsShowcase.Api.Models.Data
                 MarvelVillanId = 5,
                 VillainName = MarvelVillainsOptions.GreenGoblin,
                 VillainConfirmedKills = 721,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters 
+            {
+                NarutoCharacterId = 1,
+                CharacterName = "Naruto Uzumaki",
+                ClanBloodline = "Uzumaki",
+                Age = 35,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 2,
+                CharacterName = "Sasuke Uchiha",
+                ClanBloodline = "Uchiha",
+                Age = 36,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 3,
+                CharacterName = "Sakura Haruno",
+                ClanBloodline = "None",
+                Age = 33,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 4,
+                CharacterName = "Kakashi Hatake",
+                ClanBloodline = "Hatake",
+                Age = 50,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 5,
+                CharacterName = "Minato Namikaze",
+                ClanBloodline = "None",
+                Age = 34,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 6,
+                CharacterName = "Madara Uchiha",
+                ClanBloodline = "Uchiha",
+                Age = 41,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 7,
+                CharacterName = "Jiraiya",
+                ClanBloodline = "None",
+                Age = 55,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 8,
+                CharacterName = "Onoki",
+                ClanBloodline = "None",
+                Age = 93,
+                Village = NarutoVillages.HiddenStoneVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 9,
+                CharacterName = "Zabuza Momochi",
+                ClanBloodline = "None",
+                Age = 29,
+                Village = NarutoVillages.HiddenMistVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 10,
+                CharacterName = "Killer Bee",
+                ClanBloodline = "None",
+                Age = 47,
+                Village = NarutoVillages.HiddenCloudVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 11,
+                CharacterName = "Gaara",
+                ClanBloodline = "None",
+                Age = 37,
+                Village = NarutoVillages.HiddenSandVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 12,
+                CharacterName = "Pain",
+                ClanBloodline = "None",
+                Age = 40,
+                Village = NarutoVillages.HiddenRainVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 13,
+                CharacterName = "Orochimaru",
+                ClanBloodline = "None",
+                Age = 79,
+                Village = NarutoVillages.HiddenSoundVillage,
+            });
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
+            {
+                NarutoCharacterId = 14,
+                CharacterName = "Kurama",
+                ClanBloodline = "None",
+                Age = 200,
+                Village = NarutoVillages.HiddenLeafVillage,
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
+            {
+                NarutoCharacterId = 1,
+                Status = NarutoCharacterStatus.Hokage,
+                CharacterBio = "Naruto Uzumaki is the main character of the Naruto series. He is a ninja from the Hidden Leaf Village and current Hokage.",
+                KillCount = 50
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
+            {
+                NarutoCharacterId = 2,
+                Status = NarutoCharacterStatus.Akatsuki,
+                CharacterBio = "Sasuke Uchiha is a rogue ninja from the Hidden Leaf Village. He is a former member of Team 7 and is known for his Sharingan.",
+                KillCount = 100
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
+            {
+                NarutoCharacterId = 3,
+                Status = NarutoCharacterStatus.Jonin,
+                CharacterBio = "Sakura Haruno is a ninja from the Hidden Leaf Village. She is a medical ninja and a member of Team 7.",
+                KillCount = 10
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
+            {
+                NarutoCharacterId = 4,
+                Status = NarutoCharacterStatus.Hokage,
+                CharacterBio = "Kakashi Hatake is a former Hokage of the Hidden Leaf Village. He is known as the Copy Ninja.",
+                KillCount = 200
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 5,
+                Status = NarutoCharacterStatus.Hokage,
+                CharacterBio = "Minato Namikaze is the Fourth Hokage of the Hidden Leaf Village. He is known as the Yellow Flash.",
+                KillCount = 300
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 6,
+                Status = NarutoCharacterStatus.Akatsuki,
+                CharacterBio = "Madara Uchiha is a rogue ninja from the Hidden Leaf Village. He is known as the founder of the Uchiha clan.",
+                KillCount = 1000
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 7,
+                Status = NarutoCharacterStatus.LegendarySanin,
+                CharacterBio = "Jiraiya is one of the Legendary Sannin of the Hidden Leaf Village. He is known as the Toad Sage.",
+                KillCount = 500
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 8,
+                Status = NarutoCharacterStatus.Tsuchikage,
+                CharacterBio = "Onoki is the Third Tsuchikage of the Hidden Stone Village. He is known as the Dust Release user.",
+                KillCount = 400
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 9,
+                Status = NarutoCharacterStatus.Jonin,
+                CharacterBio = "Zabuza Momochi is a rogue ninja from the Hidden Mist Village. He is known as the Demon of the Hidden Mist.",
+                KillCount = 300
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 10,
+                Status = NarutoCharacterStatus.Jinchuriki,
+                CharacterBio = "Killer Bee is the Eight Tails Jinchuriki of the Hidden Cloud Village. He is known as the Eight Tails Host.",
+                KillCount = 200
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 11,
+                Status = NarutoCharacterStatus.Kazekage,
+                CharacterBio = "Gaara is the Fifth Kazekage of the Hidden Sand Village. He is known as the One-Tail Jinchuriki.",
+                KillCount = 150
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 12,
+                Status = NarutoCharacterStatus.Akatsuki,
+                CharacterBio = "Pain is the leader of the Akatsuki organization. He is known as the Deva Path.",
+                KillCount = 900
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 13,
+                Status = NarutoCharacterStatus.LegendarySanin,
+                CharacterBio = "Orochimaru is a rogue ninja from the Hidden Sound Village. He is known as the Snake Sannin.",
+                KillCount = 700
+            });
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            {
+                NarutoCharacterId = 14,
+                Status = NarutoCharacterStatus.Jinchuriki,
+                CharacterBio = "Kurama is the Nine Tails Bijuu of the Hidden Leaf Village. He is known as the Nine Tails Fox.",
+                KillCount = 5000
             });
         }
     }

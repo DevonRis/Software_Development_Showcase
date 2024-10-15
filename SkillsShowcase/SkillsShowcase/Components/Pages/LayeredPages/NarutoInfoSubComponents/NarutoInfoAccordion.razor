@@ -1,0 +1,35 @@
+﻿@if (NarutoInfoDataAccordion == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="accordion" id="narutoInfoAccordion">
+        @foreach (var characterInfo in NarutoInfoDataAccordion)
+        {
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-@characterInfo.NarutoCharacterId">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@characterInfo.NarutoCharacterId" aria-expanded="false" aria-controls="collapse-@characterInfo.NarutoCharacterId">
+                        <div class="d-flex justify-content-between w-100">
+                            <div id="headerInfo">
+                                <strong>Id:</strong> @characterInfo.NarutoCharacterId<br />
+                                <strong>Name:</strong> @characterInfo.CharacterName<br />
+                                <strong>Clan:</strong> @characterInfo.ClanBloodline<br />
+                                <strong>Age:</strong> @characterInfo.Age<br />
+                                <strong>Village:</strong> @characterInfo.Village<br />
+                            </div>
+                        </div>
+                    </button>
+                </h2>
+                <div id="collapse-@characterInfo.NarutoCharacterId" class="accordion-collapse collapse" aria-labelledby="heading-@characterInfo.NarutoCharacterId" data-bs-parent="#narutoInfoAccordion">
+                    <div id="accordionBody" class="accordion-body">
+                        @foreach (var characterDetail in characterInfo.NarutoCharacterDetails)
+                        {
+                            <NarutoCharacterDetailsDisplay NarutoCharacterDetails="@characterDetail"></NarutoCharacterDetailsDisplay>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
