@@ -1,0 +1,19 @@
+﻿@rendermode InteractiveServer
+
+<div class="narutoCharacter-details-container">
+    <span id="status">
+        @NarutoCharacterDetails.Status
+    </span>
+
+    <span id="jsonButton">
+        <button type="button" class="btn btn-info" @onclick="() => ShowCharacterBioModal(NarutoCharacterDetails.NarutoCharacterId)">
+            <i class="fas fa-info-circle info-icon"></i>
+        </button>
+    </span>
+
+    <span id="killCount">
+        @NarutoCharacterDetails.KillCount
+    </span>
+
+</div>
+<CharactersBioModal @ref="charactersBioModal" NarutoCharacterDetails="@NarutoCharacterDetails"/>
