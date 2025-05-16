@@ -34,6 +34,10 @@ builder.Services.AddScoped<MarvelVillainsService>();
 builder.Services.AddScoped<MarvelVillainsRepository>();
 builder.Services.AddScoped<NarutoInfoService>();
 builder.Services.AddScoped<NarutoInfoRepository>();
+builder.Services.AddScoped<GuitarMfDetailsService>();
+builder.Services.AddScoped<GuitarMfRepository>();
+builder.Services.AddScoped<AssassinsService>();
+builder.Services.AddScoped<AssassinsRepository>();
 
 var app = builder.Build();
 

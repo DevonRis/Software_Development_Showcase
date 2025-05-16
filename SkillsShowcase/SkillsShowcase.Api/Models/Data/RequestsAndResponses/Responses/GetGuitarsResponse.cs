@@ -1,6 +1,6 @@
 ﻿using SkillsShowcase.Shared.Domain.Models;
 
-namespace SkillsShowcase.Api.Models.Data.RequestsAndResponses
+namespace SkillsShowcase.Api.Models.Data.RequestsAndResponses.Responses
 {
     public class GetGuitarsResponse
     {

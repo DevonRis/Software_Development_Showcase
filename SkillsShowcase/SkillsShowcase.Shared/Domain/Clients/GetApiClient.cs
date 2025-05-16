@@ -1,5 +1,6 @@
 ﻿using SkillsShowcase.Shared.Domain.ApiCallOptions;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
+using SkillsShowcase.Shared.Domain.Requests;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -80,6 +81,34 @@ namespace SkillsShowcase.Shared.Domain.Clients
         public async Task<List<NarutoInfoForApiCall>?> GetNarutoInfo()
         {
             return await _httpClient.GetFromJsonAsync<List<NarutoInfoForApiCall>?>("/api/NarutoCharacters");
+        }
+        //Everything with GuitarManfactureDetails Table
+        public async Task<List<GuitarManufactureDetailsForApiCall>?> GetManufactureDetails()
+        {
+            return await _httpClient.GetFromJsonAsync<List<GuitarManufactureDetailsForApiCall>?>("/api/GuitarMfDetails");
+        }
+        //Everything with Assassins Table
+        public async Task<List<AssassinsForApiCall>?> GetFromAssassinsTable()
+        {
+            return await _httpClient.GetFromJsonAsync<List<AssassinsForApiCall>?>("/api/Assassins");
+        }
+        public async Task SaveInAssassinsTable(AssassinsForApiCall assassins)
+        {
+            await _httpClient.PostAsJsonAsync("/api/Assassins", assassins);
+        }
+        public async Task UpdateAssassinsTable(AssassinsForApiCall assassins)
+        {
+            await _httpClient.PutAsJsonAsync("/api/Assassins", assassins);
+        }
+        public async Task DeleteAssassinsById(int id)
+        {
+            await _httpClient.DeleteAsync($"/api/Assassins/{id}");
+        }
+        //GET ASSASSIN FROM PROCEDURE
+        public async Task<List<AssignedAssassinForApiCall>?> GetAssignedAssassinFromApi(GetAssassinRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync("/api/Assassins/GetAssignedAssassin", request);
+            return await response.Content.ReadFromJsonAsync<List<AssignedAssassinForApiCall>>();
         }
     }
 }
