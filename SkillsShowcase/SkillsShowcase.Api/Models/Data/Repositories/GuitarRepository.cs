@@ -1,5 +1,4 @@
-﻿using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
-using System;
+﻿using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.Api.Models.Data.Repositories
 {

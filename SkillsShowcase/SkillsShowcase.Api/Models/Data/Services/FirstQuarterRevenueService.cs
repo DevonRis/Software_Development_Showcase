@@ -1,5 +1,5 @@
 ﻿using SkillsShowcase.Api.Models.Data.Repositories;
-using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.Api.Models.Data.Services
 {

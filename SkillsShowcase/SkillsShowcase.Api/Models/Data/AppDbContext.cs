@@ -1,12 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SkillsShowcase.Shared.Domain.Models;
+using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 using SkillsShowcase.Shared.Domain.Models.Enums;
+using SkillsShowcase.Shared.Domain.Requests;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Requests;
 
 namespace SkillsShowcase.Api.Models.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext() 
+        public AppDbContext()
         { }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -23,6 +27,62 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<FavoriteMusicians> FavoriteMusicians { get; set; }
         public DbSet<NarutoCharacters> NarutoCharacters { get; set; }
         public DbSet<NarutoCharacterDetails> NarutoCharacterDetails { get; set; }
+        public DbSet<GuitarManufactureDetails> GuitarManufactureDetails { get; set; }
+        public DbSet<Assassins> Assassins { get; set; }
+        public DbSet<AssassinsDetails> AssassinsDetails { get; set; }
+
+        public async Task<List<AssassinsDetails>> AssignAssassinAsync(GetAssassinRequest request)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@FirstName", request.FirstName),
+                new SqlParameter("@LastName", request.LastName),
+                new SqlParameter("@Age", request.Age),
+                new SqlParameter("@Height", request.Height),
+                new SqlParameter("@RegisteredDate", request.RegisterDate),
+                new SqlParameter("@State", request.State),
+                new SqlParameter("@MartialArt", request.PerferedMartialArt),
+                new SqlParameter("@Weapon", request.PerferedWeapon)
+            };
+            return await AssassinsDetails.FromSqlRaw("EXEC [dbo].[AssignAssassin] @FirstName, @LastName, @Age, @Height, @RegisteredDate, @State, @MartialArt, @Weapon", parameters).ToListAsync();
+        }
+        public async Task<List<SearchRatesWithEFLDetails_Result>> SearchRatesWithEFLDetailsAsync(int? tDSPId, int? rEPId, decimal? averagePricePer500kWh, decimal? averagePricePer1000kWh, decimal? averagePricePer2000kWh, int? lengthOfTerm, string eFLTypeProduct, decimal? averagePricePerKwhTolerance)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@TDSPId", tDSPId ?? (object)DBNull.Value),
+                new SqlParameter("@REPId", rEPId ?? (object)DBNull.Value),
+                new SqlParameter("@AveragePricePer500kWh", averagePricePer500kWh ?? (object)DBNull.Value),
+                new SqlParameter("@AveragePricePer1000kWh", averagePricePer1000kWh ?? (object)DBNull.Value),
+                new SqlParameter("@AveragePricePer2000kWh", averagePricePer2000kWh ?? (object)DBNull.Value),
+                new SqlParameter("@LengthOfTerm", lengthOfTerm ?? (object)DBNull.Value),
+                new SqlParameter("@EFLTypeProduct", eFLTypeProduct ?? (object)DBNull.Value),
+                new SqlParameter("@AveragePricePerKwhTolerance", averagePricePerKwhTolerance ?? (object)DBNull.Value)
+            };
+
+            return await this.Set<SearchRatesWithEFLDetails_Result>()
+                .FromSqlRaw("EXEC [dbo].[SearchRatesWithEFLDetails] @TDSPId, @REPId, @AveragePricePer500kWh, @AveragePricePer1000kWh, @AveragePricePer2000kWh, @LengthOfTerm, @EFLTypeProduct, @AveragePricePerKwhTolerance", parameters)
+                .ToListAsync();
+        }
+        public async Task<InvestmentResultsFromApi[]?> GetInvestmentResults(InvestmentResultsRequest request)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@CurrentAge", request.CurrentAge),
+                new SqlParameter("@RetirementAge", request.RetirementAge),
+                new SqlParameter("@Salary", request.Salary),
+                new SqlParameter("@SalaryGrowthRate", request.SalaryGrowthRate),
+                new SqlParameter("@InitialInvestment", request.InitialInvestment),
+                new SqlParameter("@MonthlyContribution", request.MonthlyContribution),
+                new SqlParameter("@AnnualReturn", request.AnnualReturn),
+                new SqlParameter("@MonthlyLivingExpenses", request.MonthlyLivingExpenses),
+                new SqlParameter("@GoalAmount", request.GoalAmount)
+            };
+
+            return await this.Set<InvestmentResultsFromApi>()
+                .FromSqlRaw("EXEC [dbo].[YourInvestmentStoredProc] @Occupation, @CurrentAge, @RetirementAge, @Salary, @SalaryGrowthRate, @InitialInvestment, @MonthlyContribution, @AnnualReturn, @MonthlyLivingExpenses, @GoalAmount", parameters)
+                .ToArrayAsync();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -293,7 +353,7 @@ namespace SkillsShowcase.Api.Models.Data
                 GuitarPrice = 2600.23,
                 BuildYear = new DateTime(2000, 10, 15)
             });
-            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs 
+            modelBuilder.Entity<SessionLogs>().HasData(new SessionLogs
             {
                 SessionId = Guid.NewGuid(),
                 IpAddress = "01.6.0.20",
@@ -641,7 +701,7 @@ namespace SkillsShowcase.Api.Models.Data
                 VillainName = MarvelVillainsOptions.GreenGoblin,
                 VillainConfirmedKills = 721,
             });
-            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters 
+            modelBuilder.Entity<NarutoCharacters>().HasData(new NarutoCharacters
             {
                 NarutoCharacterId = 1,
                 CharacterName = "Naruto Uzumaki",
@@ -781,75 +841,167 @@ namespace SkillsShowcase.Api.Models.Data
                 CharacterBio = "Kakashi Hatake is a former Hokage of the Hidden Leaf Village. He is known as the Copy Ninja.",
                 KillCount = 200
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 5,
                 Status = NarutoCharacterStatus.Hokage,
                 CharacterBio = "Minato Namikaze is the Fourth Hokage of the Hidden Leaf Village. He is known as the Yellow Flash.",
                 KillCount = 300
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 6,
                 Status = NarutoCharacterStatus.Akatsuki,
                 CharacterBio = "Madara Uchiha is a rogue ninja from the Hidden Leaf Village. He is known as the founder of the Uchiha clan.",
                 KillCount = 1000
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 7,
                 Status = NarutoCharacterStatus.LegendarySanin,
                 CharacterBio = "Jiraiya is one of the Legendary Sannin of the Hidden Leaf Village. He is known as the Toad Sage.",
                 KillCount = 500
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 8,
                 Status = NarutoCharacterStatus.Tsuchikage,
                 CharacterBio = "Onoki is the Third Tsuchikage of the Hidden Stone Village. He is known as the Dust Release user.",
                 KillCount = 400
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 9,
                 Status = NarutoCharacterStatus.Jonin,
                 CharacterBio = "Zabuza Momochi is a rogue ninja from the Hidden Mist Village. He is known as the Demon of the Hidden Mist.",
                 KillCount = 300
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 10,
                 Status = NarutoCharacterStatus.Jinchuriki,
                 CharacterBio = "Killer Bee is the Eight Tails Jinchuriki of the Hidden Cloud Village. He is known as the Eight Tails Host.",
                 KillCount = 200
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 11,
                 Status = NarutoCharacterStatus.Kazekage,
                 CharacterBio = "Gaara is the Fifth Kazekage of the Hidden Sand Village. He is known as the One-Tail Jinchuriki.",
                 KillCount = 150
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 12,
                 Status = NarutoCharacterStatus.Akatsuki,
                 CharacterBio = "Pain is the leader of the Akatsuki organization. He is known as the Deva Path.",
                 KillCount = 900
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 13,
                 Status = NarutoCharacterStatus.LegendarySanin,
                 CharacterBio = "Orochimaru is a rogue ninja from the Hidden Sound Village. He is known as the Snake Sannin.",
                 KillCount = 700
             });
-            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails 
+            modelBuilder.Entity<NarutoCharacterDetails>().HasData(new NarutoCharacterDetails
             {
                 NarutoCharacterId = 14,
                 Status = NarutoCharacterStatus.Jinchuriki,
                 CharacterBio = "Kurama is the Nine Tails Bijuu of the Hidden Leaf Village. He is known as the Nine Tails Fox.",
                 KillCount = 5000
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 1,
+                ManufacturerName = "Fender",
+                Location = "Los Angeles, CA",
+                ContactNumber = "718-536-9997",
+                Email = "contact@Fender.com",
+                Website = "www.fender.com",
+                DateEstablished = new DateTime(1946, 1, 10)
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 2,
+                ManufacturerName = "Gibson",
+                Location = "Nashville, TN",
+                ContactNumber = "1-800-444-2766",
+                Email = "service@gibson.com",
+                Website = "www.gibson.com",
+                DateEstablished = new DateTime(1902, 6, 10)
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 3,
+                ManufacturerName = "PaulReedSmith",
+                Location = "Stevensville, MD",
+                ContactNumber = "410-643-9970",
+                Email = "info@prsguitars.com",
+                Website = "www.prsguitars.com",
+                DateEstablished = new DateTime(1985, 4, 13)
+            });
+            modelBuilder.Entity<GuitarManufactureDetails>().HasData(new GuitarManufactureDetails
+            {
+                GuitarManufacturerId = 4,
+                ManufacturerName = "Ibanez",
+                Location = "Nagoya, Japan",
+                ContactNumber = "81-52-211-9611",
+                Email = "contact@ibanez.com",
+                Website = "www.ibanez.com",
+                DateEstablished = new DateTime(1957, 2, 15)
+            });
+            modelBuilder.Entity<Assassins>().HasData(new Assassins
+            {
+                AssassinId = 1,
+                FirstName = "Ezio",
+                LastName = "Lorenzo",
+                Age = ContinentalAgeRange.Forty,
+                Height = "5'10",
+                RegisteredDate = new DateTime(2024, 1, 10),
+                State = AllFiftyStates.NY,
+                MartialArt = MartialArts.MixedMartialArts,
+                Weapon = Weapons.Glock19,
+            });
+            modelBuilder.Entity<AssassinsDetails>().HasData(new AssassinsDetails
+            {
+                AssignableAssassinId = 1,
+                AssassinName = "John Wick",
+                MartialArtKnowledge = "Brazilian Jiu-Jitsu, Karate",
+                WeaponsKnowledge = "Pistol, Revolver",
+                DesignatedRegion = "AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA"
+            });
+            modelBuilder.Entity<AssassinsDetails>().HasData(new AssassinsDetails
+            {
+                AssignableAssassinId = 2,
+                AssassinName = "Common Jones",
+                MartialArtKnowledge = "Taekwondo, Boxing",
+                WeaponsKnowledge = "Knife, Battle axe",
+                DesignatedRegion = "HI, ID, IL, IN, IA, KS, KY, LA, ME, MD"
+            });
+            modelBuilder.Entity<AssassinsDetails>().HasData(new AssassinsDetails
+            {
+                AssignableAssassinId = 3,
+                AssassinName = "Cain Chow",
+                MartialArtKnowledge = "Muay Thai, Krav Maga",
+                WeaponsKnowledge = "Katana, Longsword",
+                DesignatedRegion = "MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ"
+            });
+            modelBuilder.Entity<AssassinsDetails>().HasData(new AssassinsDetails
+            {
+                AssignableAssassinId = 4,
+                AssassinName = "Ares",
+                MartialArtKnowledge = "Eskrima, Capoeira",
+                WeaponsKnowledge = "Recurve bow, Crossbow",
+                DesignatedRegion = "NM, NY, NC, ND, OH, OK, OR, PA, RI, SC"
+            });
+            modelBuilder.Entity<AssassinsDetails>().HasData(new AssassinsDetails
+            {
+                AssignableAssassinId = 5,
+                AssassinName = "Mr Nobody",
+                MartialArtKnowledge = "Mixed Martial Arts, Judo",
+                WeaponsKnowledge = "Sniper rifle, Shotgun",
+                DesignatedRegion = "SD, TN, TX, UT, VT, VA, WA, WV, WI, WY"
             });
         }
     }

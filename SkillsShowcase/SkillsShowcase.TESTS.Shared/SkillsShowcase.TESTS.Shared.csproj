@@ -26,4 +26,9 @@
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServiceTests\Deleting\" />
+    <Folder Include="ServiceTests\Updating\" />
+  </ItemGroup>
+
 </Project>

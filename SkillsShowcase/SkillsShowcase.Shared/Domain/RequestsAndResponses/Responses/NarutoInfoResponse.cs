@@ -1,6 +1,6 @@
 ﻿using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 
-namespace SkillsShowcase.Api.Models.Data.RequestsAndResponses
+namespace SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses
 {
     public class NarutoInfoResponse
     {

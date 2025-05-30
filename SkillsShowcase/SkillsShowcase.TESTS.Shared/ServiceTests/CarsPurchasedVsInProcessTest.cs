@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsShowcase.Api.Models.Data;
 using SkillsShowcase.Api.Models.Data.Repositories;
-using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
 using SkillsShowcase.Api.Models.Data.Services;
 using SkillsShowcase.Shared.Domain.Models.Enums;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.TESTS.Shared.ServiceTests
 {

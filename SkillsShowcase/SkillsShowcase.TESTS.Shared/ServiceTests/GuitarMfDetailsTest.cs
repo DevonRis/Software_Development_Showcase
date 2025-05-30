@@ -7,22 +7,22 @@ using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 namespace SkillsShowcase.TESTS.Shared.ServiceTests
 {
     [TestClass]
-    public class GuitarServiceTest
+    public class GuitarMfDetailsTest
     {
         [TestMethod]
-        public void GetGuitarsData()
+        public async Task CheckGuitarMfDetails()
         {
             string connectionString = "Server=(localdb)\\mssqllocaldb;Database=SkillsShowcase;Trusted_Connection=True;MultipleActiveResultSets=true;";
             DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseSqlServer(connectionString).Options;
             AppDbContext appDbContext = new(options);
-            GuitarRepository guitarRepository = new(appDbContext);
-            GuitarService guitarService = new(guitarRepository);
-            GetGuitarsResponse response = guitarService.GetGuitars();
-            var stratocaster = response.Guitars
-                .Where(guitar => guitar.GuitarModel == "Custom Shop American Stratocaster")
-                .FirstOrDefault();
-            Assert.AreEqual("Custom Shop American Stratocaster", stratocaster.GuitarModel);
+            GuitarMfRepository guitarMfDetailsRepository = new(appDbContext);
+            GuitarMfDetailsService guitarMfDetailsService = new(guitarMfDetailsRepository);
+            GetGuitarMfDetailsResponse response = await guitarMfDetailsService.GetGuitarMf();
+            string guitarMfName = "Fender";
+            string website = "www.prsguitars.com";
+            Assert.IsTrue(response.GuitarMfDetails.Any(guitar => guitar.ManufacturerName == guitarMfName));
+            Assert.IsTrue(response.GuitarMfDetails.Any(guitar => guitar.Website == website));
         }
     }
 }

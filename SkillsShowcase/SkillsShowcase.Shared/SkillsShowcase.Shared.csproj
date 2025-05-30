@@ -23,4 +23,9 @@
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Domain\RequestsAndResponses\Delete\" />
+	  <Folder Include="Domain\RequestsAndResponses\Update\" />
+	</ItemGroup>
 </Project>

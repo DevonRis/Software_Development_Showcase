@@ -1,12 +1,12 @@
 ﻿using SkillsShowcase.Api.Models.Data.Repositories;
-using SkillsShowcase.Api.Models.Data.RequestsAndResponses;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.Api.Models.Data.Services
 {
     public class NarutoInfoService(NarutoInfoRepository narutoInfoRepository)
     {
-        public async Task<NarutoInfoResponse> GetNarutoInfo() 
-        { 
+        public async Task<NarutoInfoResponse> GetNarutoInfo()
+        {
             var narutoInfoData = await narutoInfoRepository.GetNarutInfoForRepository();
             return new NarutoInfoResponse
             {
