@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SkillsShowcase.Api.Models.Data.RequestsAndResponses.Responses;
 using SkillsShowcase.Api.Models.Data.RequestsAndResponses.Save;
 using SkillsShowcase.Api.Models.Data.Services;
 using SkillsShowcase.Shared.Domain.Requests;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.Api.Controllers
 {

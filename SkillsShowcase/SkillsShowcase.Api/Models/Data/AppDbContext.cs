@@ -1,8 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SkillsShowcase.Shared.Domain.Models;
+using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 using SkillsShowcase.Shared.Domain.Models.Enums;
 using SkillsShowcase.Shared.Domain.Requests;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Requests;
 
 namespace SkillsShowcase.Api.Models.Data
 {
@@ -61,6 +63,25 @@ namespace SkillsShowcase.Api.Models.Data
             return await this.Set<SearchRatesWithEFLDetails_Result>()
                 .FromSqlRaw("EXEC [dbo].[SearchRatesWithEFLDetails] @TDSPId, @REPId, @AveragePricePer500kWh, @AveragePricePer1000kWh, @AveragePricePer2000kWh, @LengthOfTerm, @EFLTypeProduct, @AveragePricePerKwhTolerance", parameters)
                 .ToListAsync();
+        }
+        public async Task<InvestmentResultsFromApi[]?> GetInvestmentResults(InvestmentResultsRequest request)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@CurrentAge", request.CurrentAge),
+                new SqlParameter("@RetirementAge", request.RetirementAge),
+                new SqlParameter("@Salary", request.Salary),
+                new SqlParameter("@SalaryGrowthRate", request.SalaryGrowthRate),
+                new SqlParameter("@InitialInvestment", request.InitialInvestment),
+                new SqlParameter("@MonthlyContribution", request.MonthlyContribution),
+                new SqlParameter("@AnnualReturn", request.AnnualReturn),
+                new SqlParameter("@MonthlyLivingExpenses", request.MonthlyLivingExpenses),
+                new SqlParameter("@GoalAmount", request.GoalAmount)
+            };
+
+            return await this.Set<InvestmentResultsFromApi>()
+                .FromSqlRaw("EXEC [dbo].[YourInvestmentStoredProc] @Occupation, @CurrentAge, @RetirementAge, @Salary, @SalaryGrowthRate, @InitialInvestment, @MonthlyContribution, @AnnualReturn, @MonthlyLivingExpenses, @GoalAmount", parameters)
+                .ToArrayAsync();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

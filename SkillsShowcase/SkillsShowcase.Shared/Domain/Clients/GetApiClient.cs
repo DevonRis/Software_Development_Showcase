@@ -1,6 +1,7 @@
 ﻿using SkillsShowcase.Shared.Domain.ApiCallOptions;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 using SkillsShowcase.Shared.Domain.Requests;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Requests;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -109,6 +110,11 @@ namespace SkillsShowcase.Shared.Domain.Clients
         {
             var response = await _httpClient.PostAsJsonAsync("/api/Assassins/GetAssignedAssassin", request);
             return await response.Content.ReadFromJsonAsync<List<AssignedAssassinForApiCall>>();
+        }
+        //GET INVESTMENT RESULTS FROM API
+        public async Task GetInvestmentResultsFromApi(InvestmentResultsRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync("/api/Investment/GetInvestmentResults", request);
         }
     }
 }

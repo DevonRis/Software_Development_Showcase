@@ -38,6 +38,8 @@ builder.Services.AddScoped<GuitarMfDetailsService>();
 builder.Services.AddScoped<GuitarMfRepository>();
 builder.Services.AddScoped<AssassinsService>();
 builder.Services.AddScoped<AssassinsRepository>();
+builder.Services.AddScoped<InvestmentService>();
+builder.Services.AddScoped<InvestmentRepository>();
 
 var app = builder.Build();
 

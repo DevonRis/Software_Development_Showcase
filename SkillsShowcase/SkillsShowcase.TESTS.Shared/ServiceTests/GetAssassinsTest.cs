@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsShowcase.Api.Models.Data;
 using SkillsShowcase.Api.Models.Data.Repositories;
-using SkillsShowcase.Api.Models.Data.RequestsAndResponses.Responses;
 using SkillsShowcase.Api.Models.Data.Services;
 using SkillsShowcase.Shared.Domain.Models.Enums;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.TESTS.Shared.ServiceTests
 {
@@ -11,7 +11,7 @@ namespace SkillsShowcase.TESTS.Shared.ServiceTests
     public class GetAssassinsTest
     {
         [TestMethod]
-        public async Task CheckGetMethodForAssassins() 
+        public async Task CheckGetMethodForAssassins()
         {
             string connectionString = "Server=(localdb)\\mssqllocaldb;Database=SkillsShowcase;Trusted_Connection=True;MultipleActiveResultSets=true;";
             DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()

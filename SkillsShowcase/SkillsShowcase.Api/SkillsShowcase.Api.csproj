@@ -21,9 +21,4 @@
     <ProjectReference Include="..\SkillsShowcase.Shared\SkillsShowcase.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Data\RequestsAndResponses\Delete\" />
-    <Folder Include="Models\Data\RequestsAndResponses\Update\" />
-  </ItemGroup>
-
 </Project>

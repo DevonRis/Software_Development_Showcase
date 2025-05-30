@@ -1,8 +1,8 @@
 ﻿using SkillsShowcase.Api.Models.Data.Repositories;
-using SkillsShowcase.Api.Models.Data.RequestsAndResponses.Responses;
 using SkillsShowcase.Api.Models.Data.RequestsAndResponses.Save;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 using SkillsShowcase.Shared.Domain.Requests;
+using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
 namespace SkillsShowcase.Api.Models.Data.Services
 {

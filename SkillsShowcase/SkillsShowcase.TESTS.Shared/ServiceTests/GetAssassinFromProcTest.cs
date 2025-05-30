@@ -36,9 +36,9 @@ namespace SkillsShowcase.TESTS.Shared.ServiceTests
                 Age = age,
                 Height = height,
                 RegisterDate = registeredDate,
-                State = state,
-                PerferedMartialArt = martialArt,
-                PerferedWeapon = weapon
+                State = state.ToString(),
+                PerferedMartialArt = martialArt.ToString(),
+                PerferedWeapon = weapon.ToString()
             };
             var response = assassinsService.GetAssignedAssassin(request).GetAwaiter().GetResult();
 
