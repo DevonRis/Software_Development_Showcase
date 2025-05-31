@@ -15,8 +15,8 @@ namespace SkillsShowcase.Api.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> GetInvestmentResults(InvestmentResultsRequest request)
+        [HttpPost("GetInvestmentResults")]
+        public async Task<ActionResult> GetInvestmentResults([FromBody] InvestmentResultsRequest request)
         {
             var results = await _service.ResultsFromRepo(request);
             return Ok(results);

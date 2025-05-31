@@ -80,13 +80,12 @@ namespace SkillsShowcase.Api.Models.Data
             };
 
             return await this.Set<InvestmentResultsFromApi>()
-                .FromSqlRaw("EXEC [dbo].[YourInvestmentStoredProc] @Occupation, @CurrentAge, @RetirementAge, @Salary, @SalaryGrowthRate, @InitialInvestment, @MonthlyContribution, @AnnualReturn, @MonthlyLivingExpenses, @GoalAmount", parameters)
+                .FromSqlRaw("EXEC [dbo].[InvestmentsCalculator] @CurrentAge, @RetirementAge, @Salary, @SalaryGrowthRate, @InitialInvestment, @MonthlyContribution, @AnnualReturn, @MonthlyLivingExpenses, @GoalAmount", parameters)
                 .ToArrayAsync();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<CarPurchaseEventTypes>()
                 .Property(e => e.CarPurchaseEventTypeId)
                 .HasConversion<int>();
@@ -100,6 +99,7 @@ namespace SkillsShowcase.Api.Models.Data
                 .WithMany(c => c.NarutoCharacterDetails)
                 .HasForeignKey(d => d.NarutoCharacterId)
                 .HasConstraintName("FK_NarutoCharacters_NarutoCharacterDetails");
+            modelBuilder.Entity<InvestmentResultsFromApi>().HasNoKey();
 
             modelBuilder.Entity<Employee>().HasData(
             new Employee

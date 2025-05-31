@@ -6,7 +6,7 @@ using SkillsShowcase.Shared.Domain.Requests;
 using SkillsShowcase.Shared.Domain.Models.Enums;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 
-namespace SkillsShowcase.TESTS.Shared.ServiceTests
+namespace SkillsShowcase.TESTS.Shared.ServiceTests.ProcTests
 {
     [TestClass]
     public class GetAssassinFromProcTest
