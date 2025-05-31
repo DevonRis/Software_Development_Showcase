@@ -8,7 +8,7 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
         //GET INVESTMENT RESULTS FROM CONTEXT
         internal async Task<InvestmentResultsFromApi[]?> GetInvestmentResults(InvestmentResultsRequest request)
         {
-            var results = await appDbContext.GetInvestmentResults(request);
+            InvestmentResultsFromApi[]? results = await appDbContext.GetInvestmentResults(request);
             return results?.ToArray();
         }
     }

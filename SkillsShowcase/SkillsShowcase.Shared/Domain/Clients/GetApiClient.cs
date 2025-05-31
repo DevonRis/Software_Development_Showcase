@@ -110,7 +110,14 @@ namespace SkillsShowcase.Shared.Domain.Clients
         public async Task<List<AssignedAssassinForApiCall>?> GetAssignedAssassinFromApi(GetAssassinRequest request)
         {
             var response = await _httpClient.PostAsJsonAsync("/api/Assassins/GetAssignedAssassin", request);
-            return await response.Content.ReadFromJsonAsync<List<AssignedAssassinForApiCall>>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            else 
+            {
+                return await response.Content.ReadFromJsonAsync<List<AssignedAssassinForApiCall>>();
+            }
         }
         //GET INVESTMENT RESULTS FROM API
         public async Task<InvestmentResultsResponse?> GetInvestmentResultsFromApi(InvestmentResultsRequest request)

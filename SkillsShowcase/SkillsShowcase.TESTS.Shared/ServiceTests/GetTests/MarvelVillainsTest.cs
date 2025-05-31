@@ -5,7 +5,7 @@ using SkillsShowcase.Api.Models.Data.Services;
 using SkillsShowcase.Shared.Domain.Models.Enums;
 using SkillsShowcase.Shared.Domain.RequestsAndResponses.Responses;
 
-namespace SkillsShowcase.TESTS.Shared.ServiceTests
+namespace SkillsShowcase.TESTS.Shared.ServiceTests.GetTests
 {
     [TestClass]
     public class MarvelVillainsTest
