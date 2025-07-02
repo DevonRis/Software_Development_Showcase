@@ -30,6 +30,7 @@ namespace SkillsShowcase.Api.Models.Data
         public DbSet<GuitarManufactureDetails> GuitarManufactureDetails { get; set; }
         public DbSet<Assassins> Assassins { get; set; }
         public DbSet<AssassinsDetails> AssassinsDetails { get; set; }
+        public DbSet<UsDemographics> UsDemographics { get; set; }
 
         public async Task<List<AssassinsDetails>> AssignAssassinAsync(GetAssassinRequest request)
         {
@@ -1002,6 +1003,39 @@ namespace SkillsShowcase.Api.Models.Data
                 MartialArtKnowledge = "Mixed Martial Arts, Judo",
                 WeaponsKnowledge = "Sniper rifle, Shotgun",
                 DesignatedRegion = "SD, TN, TX, UT, VT, VA, WA, WV, WI, WY"
+            });
+            modelBuilder.Entity<UsDemographics>().HasData(new UsDemographics
+            {
+                Id = 1,
+                TotalPopulation = 347000000,
+                WhitesPopulation = 0.577m,
+                HispanicsPopulation = 0.191m,
+                AsiansPopulation = 0.058m,
+                AfricanAmericanPopulation = 0.121m,
+                BlackMenPopulation = 0.0585m,
+                BlackWomenPopulation = 0.0634m,
+                BlackMenWithBachelors = 0.236m,
+                BlackWomenWithBachelors = 0.301m,
+                BlackMenWithGradDegrees = 0.083m,
+                BlackWomenWithGradDegrees = 0.112m,
+                WhitesWithBachelors = 0.420m,
+                WhitesWithGradDegrees = 0.170m,
+                HispanicsWithBachelors = 0.220m,
+                HispanicsWithGradDegrees = 0.080m,
+                AsiansWithBachelors = 0.710m,
+                AsiansWithGradDegrees = 0.300m,
+                WhiteHouseHoldsThatsMarried = 0.525m,
+                BlackHouseHoldsThatsMarried = 0.307m,
+                HispanicHouseHoldsThatsMarried = 0.465m,
+                AsianHouseHoldsThatsMarried = 0.610m,
+                WhiteUpperMiddleClassPercentage = 0.265m,
+                BlackUpperMiddleClassPercentage = 0.074m,
+                HispanicUpperMiddleClassPercentage = 0.065m,
+                AsianUpperMiddleClassPercentage = 0.285m,
+                WhiteLowerMiddleClassPercentage = 0.320m,
+                BlackLowerMiddleClassPercentage = 0.280m,
+                HispanicLowerMiddleClassPercentage = 0.300m,
+                AsianLowerMiddleClassPercentage = 0.230m
             });
         }
     }
