@@ -40,6 +40,8 @@ builder.Services.AddScoped<AssassinsService>();
 builder.Services.AddScoped<AssassinsRepository>();
 builder.Services.AddScoped<InvestmentService>();
 builder.Services.AddScoped<InvestmentRepository>();
+builder.Services.AddScoped<EducationDataService>();
+builder.Services.AddScoped<GetEducationDataFromRepository>();
 
 var app = builder.Build();
 

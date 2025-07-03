@@ -132,5 +132,15 @@ namespace SkillsShowcase.Shared.Domain.Clients
                 return null;
             }
         }
+        //GET EDUCATION DATA FROM API GET METHOD
+        public async Task<EducationDataResponse?> GetEducationDataFromApi(EducationDataRequest request)//help me finish
+        {
+            var response = await _httpClient.PostAsJsonAsync("/api/Education/GetEducationData", request);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<EducationDataResponse>();
+            }
+            return null;
+        }
     }
 }
