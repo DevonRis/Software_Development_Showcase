@@ -133,12 +133,22 @@ namespace SkillsShowcase.Shared.Domain.Clients
             }
         }
         //GET EDUCATION DATA FROM API GET METHOD
-        public async Task<EducationDataResponse?> GetEducationDataFromApi(EducationDataRequest request)//help me finish
+        public async Task<EducationDataResponse?> GetEducationDataFromApi(EducationDataRequest request)
         {
             var response = await _httpClient.PostAsJsonAsync("/api/Education/GetEducationData", request);
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadFromJsonAsync<EducationDataResponse>();
+            }
+            return null;
+        }
+        //Get Marriage rates data from API
+        public async Task<MarriageRatesByEducationResponse?> GetMarriageRatesByEducationFromApi(MarriageByEducationRequest marriageRatesRequest) 
+        { 
+            var response = await _httpClient.PostAsJsonAsync("/api/Education/GetMarriageRatesByEducation", marriageRatesRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<MarriageRatesByEducationResponse>();
             }
             return null;
         }

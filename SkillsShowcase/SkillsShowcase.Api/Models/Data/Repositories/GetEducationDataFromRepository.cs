@@ -70,9 +70,9 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
             decimal hispanicMenWithBachelors = totalPopulation * hispanicPopulation * hispanicMenWithBSPercentage;
             decimal hispanicMenWithMasters = totalPopulation * hispanicPopulation * hispanicMenWithMastersPercentage;
 
-            
+
             //Fill this bad boy up with the data
-            EducationDataFromApi[]? educationData = demographics.Select(item => new EducationDataFromApi 
+            EducationDataFromApi[]? educationData = demographics.Select(item => new EducationDataFromApi
             {
                 WhitesWithBachelors = (int)Math.Round(whiteMenWithBachelors),
                 WhitesWithMasters = (int)Math.Round(whiteMenWithMasters),
@@ -88,6 +88,65 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
                 BlackWomenWithMasters = (int)Math.Round(blackWomenWithMasters)
             }).ToArray();
             return educationData;
+        }
+        internal async Task<(MarriageRatesByEducationResults[]? Results, int[] PopulationOfEachGroup)> GetMarriageDataFromRepository(MarriageByEducationRequest request, int[] populationOfEachGroup)
+        {
+            UsDemographics[]? demographics = await appDbContext.UsDemographics.ToArrayAsync();
+
+            int totalPopulation = demographics.Select(x => x.TotalPopulation)
+                .FirstOrDefault();
+
+            var groupedPopulationsPercentages = demographics.Select(data => new
+            {
+                data.WhitesPopulation,
+                data.AfricanAmericanPopulation,
+                data.HispanicsPopulation,
+                data.AsiansPopulation,
+            }).ToArray();
+
+            // Calculate the populations for each group based on the percentages and total population
+            List<int> populations = new();
+            foreach (var percent in groupedPopulationsPercentages)
+            {
+                int whitePopulation = (int)Math.Round(totalPopulation * percent.WhitesPopulation);
+                int africanAmericanPopulation = (int)Math.Round(totalPopulation * percent.AfricanAmericanPopulation);
+                int hispanicPopulation = (int)Math.Round(totalPopulation * percent.HispanicsPopulation);
+                int asianPopulation = (int)Math.Round(totalPopulation * percent.AsiansPopulation);
+
+                populations.Add(whitePopulation);
+                populations.Add(africanAmericanPopulation);
+                populations.Add(hispanicPopulation);
+                populations.Add(asianPopulation);
+            }
+            // Assign the calculated populations to the input array reference
+            populationOfEachGroup = populations.ToArray();
+
+            var groupedMarriedCouplesPercentages = demographics.Select(data => new
+            {
+                data.WhiteHouseHoldsThatsMarried,
+                data.BlackHouseHoldsThatsMarried,
+                data.HispanicHouseHoldsThatsMarried,
+                data.AsianHouseHoldsThatsMarried,
+            }).ToArray();
+
+            var results = new List<MarriageRatesByEducationResults>();
+
+            foreach (var percent in groupedMarriedCouplesPercentages)
+            {
+                var whiteHouseholds = (int)Math.Round(populationOfEachGroup[0] * percent.WhiteHouseHoldsThatsMarried);
+                var blackHouseholds = (int)Math.Round(populationOfEachGroup[1] * percent.BlackHouseHoldsThatsMarried);
+                var hispanicHouseholds = (int)Math.Round(populationOfEachGroup[2] * percent.HispanicHouseHoldsThatsMarried);
+                var asianHouseholds = (int)Math.Round(populationOfEachGroup[3] * percent.AsianHouseHoldsThatsMarried);
+
+                results.Add(new MarriageRatesByEducationResults
+                {
+                    WhiteMarriedCouples = whiteHouseholds,
+                    BlackMarriedCouples = blackHouseholds,
+                    HispanicMarriedCouples = hispanicHouseholds,
+                    AsianMarriedCouples = asianHouseholds
+                });
+            }
+            return (results.ToArray(), populationOfEachGroup);
         }
     }
 }
