@@ -8,6 +8,8 @@ namespace SkillsShowcase.Shared.Domain.Models.Enums
         Married,
         [Description("Married with kids")]
         MarriedWithKids,
+        [Description("Not Married")]
+        NotMarried,
         [Description("Single")]
         Single,
         [Description("Single with kids")]
