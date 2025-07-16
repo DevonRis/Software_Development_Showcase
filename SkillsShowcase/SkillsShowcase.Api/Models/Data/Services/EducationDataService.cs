@@ -52,7 +52,6 @@ namespace SkillsShowcase.Api.Models.Data.Services
             string[] educationLevels = new string[]
             {
                 EducationLevels.HighSchoolOrLess.GetEnumDescription(),
-                EducationLevels.SomeCollege.GetEnumDescription(),
                 EducationLevels.BachelorsOrHigher.GetEnumDescription()
             };
 
