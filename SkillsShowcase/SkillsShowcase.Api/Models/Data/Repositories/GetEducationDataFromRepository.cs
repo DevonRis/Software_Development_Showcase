@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using SkillsShowcase.Shared.Domain.Data;
 using SkillsShowcase.Shared.Domain.Models;
 using SkillsShowcase.Shared.Domain.Models.ApiModelsForApiCall;
 using SkillsShowcase.Shared.Domain.RequestsAndResponses.Requests;
@@ -121,6 +123,11 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
             // Assign the calculated populations to the input array reference
             populationOfEachGroup = populations.ToArray();
 
+             int marriedWhitesHSD = (int)Math.Round(populationOfEachGroup[0] * CustomConstatnts.MarriedWhiteHouseHolds_HS);
+            int marriedAsiansHSD = (int)Math.Round(populationOfEachGroup[3] * CustomConstatnts.MarriedAsianHouseHolds_HS);
+            int marriedBlacksHSD = (int)Math.Round(populationOfEachGroup[1] * CustomConstatnts.MarriedBlackHouseHolds_HS);
+            int marriedHispanicsHSD = (int)Math.Round(populationOfEachGroup[2] * CustomConstatnts.MarriedHispanicHouseHolds_HS);
+
             var groupedMarriedCouplesPercentages = demographics.Select(data => new
             {
                 data.WhiteHouseHoldsThatsMarried,
@@ -143,7 +150,11 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
                     WhiteMarriedCouples = whiteHouseholds,
                     BlackMarriedCouples = blackHouseholds,
                     HispanicMarriedCouples = hispanicHouseholds,
-                    AsianMarriedCouples = asianHouseholds
+                    AsianMarriedCouples = asianHouseholds,
+                    WhitesMarriedHSD = marriedWhitesHSD,
+                    BlacksMarriedHSD = marriedBlacksHSD,
+                    HispanicsMarriedHSD = marriedHispanicsHSD,
+                    AsiansMarriedHSD = marriedAsiansHSD
                 });
             }
             return (results.ToArray(), populationOfEachGroup);
