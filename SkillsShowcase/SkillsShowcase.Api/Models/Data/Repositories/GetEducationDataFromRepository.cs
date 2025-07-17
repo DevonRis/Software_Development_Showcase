@@ -123,7 +123,7 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
             // Assign the calculated populations to the input array reference
             populationOfEachGroup = populations.ToArray();
 
-             int marriedWhitesHSD = (int)Math.Round(populationOfEachGroup[0] * CustomConstatnts.MarriedWhiteHouseHolds_HS);
+            int marriedWhitesHSD = (int)Math.Round(populationOfEachGroup[0] * CustomConstatnts.MarriedWhiteHouseHolds_HS);
             int marriedAsiansHSD = (int)Math.Round(populationOfEachGroup[3] * CustomConstatnts.MarriedAsianHouseHolds_HS);
             int marriedBlacksHSD = (int)Math.Round(populationOfEachGroup[1] * CustomConstatnts.MarriedBlackHouseHolds_HS);
             int marriedHispanicsHSD = (int)Math.Round(populationOfEachGroup[2] * CustomConstatnts.MarriedHispanicHouseHolds_HS);
@@ -158,6 +158,62 @@ namespace SkillsShowcase.Api.Models.Data.Repositories
                 });
             }
             return (results.ToArray(), populationOfEachGroup);
+        }
+        internal async Task<TheUpperMiddleClassResults[]?> GetUpperMiddleClassDataFromRepository(UpperMiddleClassRequest request) 
+        {
+            UsDemographics[]? demographics = await appDbContext.UsDemographics.ToArrayAsync();
+
+            int totalPopulation = demographics.Select(x => x.TotalPopulation)
+                .FirstOrDefault();
+
+            var groupedPopulationsPercentages = demographics.Select(data => new
+            {
+                data.WhitesPopulation,
+                data.AfricanAmericanPopulation,
+                data.HispanicsPopulation,
+                data.AsiansPopulation,
+            }).ToArray();
+
+            List<int> populations = new();
+            foreach (var percent in groupedPopulationsPercentages)
+            {
+                int whitePopulation = (int)Math.Round(totalPopulation * percent.WhitesPopulation);
+                int africanAmericanPopulation = (int)Math.Round(totalPopulation * percent.AfricanAmericanPopulation);
+                int hispanicPopulation = (int)Math.Round(totalPopulation * percent.HispanicsPopulation);
+                int asianPopulation = (int)Math.Round(totalPopulation * percent.AsiansPopulation);
+
+                populations.Add(whitePopulation);
+                populations.Add(africanAmericanPopulation);
+                populations.Add(hispanicPopulation);
+                populations.Add(asianPopulation);
+            }
+
+            var groupedUM_ClassPrecentages = demographics.Select(data => new
+            {
+                data.WhiteUpperMiddleClassPercentage,
+                data.BlackUpperMiddleClassPercentage,
+                data.AsianUpperMiddleClassPercentage,
+                data.HispanicUpperMiddleClassPercentage,
+            }).ToArray();
+
+            List<TheUpperMiddleClassResults> results = new List<TheUpperMiddleClassResults>();
+
+            foreach (var percent in groupedUM_ClassPrecentages) 
+            {
+                int white_UMC = (int)Math.Round(populations[0] * percent.WhiteUpperMiddleClassPercentage);
+                int black_UMC = (int)Math.Round(populations[1] * percent.BlackUpperMiddleClassPercentage);
+                int asians_UMC = (int)Math.Round(populations[3] * percent.AsianUpperMiddleClassPercentage);
+                int hispanics_UMC = (int)Math.Round(populations[2] * percent.HispanicUpperMiddleClassPercentage);
+                
+                results.Add(new TheUpperMiddleClassResults
+                {
+                    WhitesUM_Class = white_UMC,
+                    AfricanAmericansUM_Class = black_UMC,
+                    AsiansUM_Class = asians_UMC,
+                    HispanicsUM_Class = hispanics_UMC
+                });
+            }
+            return results.ToArray();
         }
     }
 }

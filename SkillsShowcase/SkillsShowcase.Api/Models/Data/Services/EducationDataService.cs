@@ -69,5 +69,17 @@ namespace SkillsShowcase.Api.Models.Data.Services
             };
             return response;
         }
+        public async Task<UpperMiddleClassResponse> GetUpperMiddleClassDataFromRepo(UpperMiddleClassRequest request) 
+        {
+            TheUpperMiddleClassResults[]? upperMiddleClassData = await repo.GetUpperMiddleClassDataFromRepository(request);
+            string salaryRange = SalaryRange.NeededSalaryRange.GetEnumDescription();
+
+            UpperMiddleClassResponse reponse = new UpperMiddleClassResponse() 
+            { 
+                UpperMiddleClass = upperMiddleClassData, 
+                IncomeRange = salaryRange 
+            };
+            return reponse;
+        }
     }
 }
