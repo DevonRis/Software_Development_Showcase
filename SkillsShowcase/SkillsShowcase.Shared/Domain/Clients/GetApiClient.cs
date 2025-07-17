@@ -152,5 +152,15 @@ namespace SkillsShowcase.Shared.Domain.Clients
             }
             return null;
         }
+        //Get Upper Middle Class Data from API
+        public async Task<UpperMiddleClassResponse?> GetUpperMiddleClassDataFromApi(UpperMiddleClassRequest upperMiddleClassRequest)
+        {
+            var response = await _httpClient.PostAsJsonAsync("/api/Education/GetUpperMiddleClassData", upperMiddleClassRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<UpperMiddleClassResponse>();
+            }
+            return null;
+        }
     }
 }

@@ -27,5 +27,11 @@ namespace SkillsShowcase.Api.Controllers
             MarriageRatesByEducationResponse? results = await _service.GetMarriageRatesDataFromRepo(request);
             return Ok(results);
         }
+        [HttpPost("GetUpperMiddleClassData")]
+        public async Task<ActionResult> GetUpperMiddleClassData(UpperMiddleClassRequest request)
+        {
+            UpperMiddleClassResponse? results = await _service.GetUpperMiddleClassDataFromRepo(request);
+            return Ok(results);
+        }
     }
 }
